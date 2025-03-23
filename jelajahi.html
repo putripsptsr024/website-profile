@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js" defer></script>
+  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+  <link rel="stylesheet" href="style-jelajahi.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f7fdf7;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      background-color: #2f855a;
+      color: white;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    header img {
+      height: 60px;
+      margin-right: 20px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    .content {
+      padding: 20px;
+    }
+    .content h2 {
+      color: #2f855a;
+      font-size: 2rem;
+    }
+    .content p {
+      color: #4a5568;
+      line-height: 1.6;
+    }
+    .visi-misi {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .visi-misi h2 {
+      margin-bottom: 20px;
+      cursor: pointer;
+      position: relative;
+      display: inline-block;
+    }
+    .visi-misi h2::after {
+      content: '\25BC';
+      position: absolute;
+      right: -25px;
+      font-size: 1rem;
+      transition: transform 0.3s ease;
+    }
+    .visi-misi h2:hover::after {
+      transform: scale(1.2);
+    }
+    .visi-misi-content {
+      display: none;
+      text-align: left;
+      margin-top: 20px;
+    }
+    .visi-misi-content.active {
+      display: block;
+    }
+    .swiper {
+      width: 100%;
+      height: auto;
+      margin-top: 20px;
+    }
+    .swiper-slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .swiper-slide img {
+      width: 80%;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: #2f855a;
+      width: auto;
+      height: auto;
+    }
+    .swiper-button-next {
+      right: 10px;
+    }
+    .swiper-button-prev {
+      left: 10px;
+    }
+    footer {
+      background-color: #2f855a;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+    .activity-gallery {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .activity-gallery img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .justify-text {
+      text-align: justify;
+    }
+  </style>
+  <title>Jelajahi Desa Ginunggung</title>
+</head>
+<body>
+  <header>
+    <img src="logo-desa.png" alt="Logo Desa Ginunggung">
+    <h1>Jelajahi Desa Ginunggung</h1>
+  </header>
+
+  <div style="text-align: center; margin-top: 20px;">
+    <a href="index.html" style="text-decoration: none; color: white;">
+      <button style="background-color: #2f855a; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease;">
+        Kembali ke Beranda
+      </button>
+    </a>
+  </div>
+
+  <div class="content">
+    <div class="visi-misi">
+      <h2 onclick="toggleVisiMisi()">Visi & Misi Desa</h2>
+      <div id="visi-misi-content" class="visi-misi-content justify-text">
+        <h1>Visi :</h1>
+        <p><strong>GERBANG DAYA SOSIAL SEJAHTERA “KERJA BERSAMA”</strong></p>
+        <h4>NILAI – NILAI YANG MELANDASI :</h4>
+        <ol>
+          <li>Bahwa Dengan Berlakunya Undang – Undang Nomor 23 Tahun 2004 Tentang Pemerintah Daerah Dalam Wujud Otonomi Daerah Secara Utuh, Luas Nyata Dalam Kerangka Negara Kesatuan Republik Indonesia Sesuai Arah Desentralisasi Bagi Desa Dan Kabupaten Maka Perlu Mengoptimalisasikan Fungsi Dusun Sebagai Pelaksana Terdepan Untuk Melayani Masyarakat.</li>
+          <li>Bahwa Dalam Upaya Untuk Mengantisipasi Aspirasi Masyarakat Yang Terus Berkembang Dan Menjaga Efisiensi Serta Efektifitas Penyelenggaraan Pemerintahan Yang Akhirnya Bernuansa Pada Pemberian Pelayanan Masyarakat Yang Hakekatnya Semakin Lama Semakin Baik Di Rasakan Disamping Untuk Memberikan Peluang Peran Serta Masayrakat Dalam Kegiatan Masyarakat Dalam Kegiatan Pemerintahan, Pembangunan Dan Kemasyarakatan Secara Lebih Luas Dalam Konteks Demokrasi.</li>
+          <li>Bahwa Dengan Berdasarkan Undang – Undang Desa No 06 Tahun 2014 Penyelnggaraan Ppemerintahan Melalui Pemberdayaan Perangkat Desa Dusun RTDan RWSerta Kelembagaan Organisasi Sosial Kemasyarkatan Dapat Meningkatkan Dan Mempercepat Pelayanan Untuk Pemetaan Pembangunan Di Bidang  Kemasyarakatan.</li>
+          <li>Bahwa Dengan Pemberdayaan Perangkat Dusun Melalui Otonomi Dusun Merencanakan Program  - Program Perencaan Button Up Dan Top Down Dalam Mewujudkan Aspirasi Masyrakat Yang Maju, Mandiri, Sejahtera Dan Bertanggung Jawab Yang Di Ridohi Allah SWT Dalam Bingkai Pemerintahan Yang “SABAR” SEJAHTERA, ADIL, BERKARAKTER, AKTIF, Dan RELIGIUS.</li>
+          <li>Bahwa Dengan Otonomi Dusun Dapat Mempercepat Pertumbuhan Ekonomi Masyarakat Melalui Perangkat Dusun Dan Kelembagaannya Menuju Kemandirian Dusun Dalam Menggali Potensi Sumber Daya Desa Untuk Mewujudkan Keadlian Sosial Bagi Seluruh Masyarakat Indonesia.</li>
+        </ol>
+        <h1>Misi :</h1>
+        <ol>
+          <li>Memperkuat restorasi sosial, budaya masyarakat sebagai mahluk ciptaan Allah SWT dan sebagai mahluk sosial yang berbangsa, bernegara, beragama untuk Sejahtera Kerja Bersama melalui tata kelola pemerintahan yang bersih melalui pemberdayaan Dusun/otonomi Dusun.</li>
+          <li>Melanjutkan dan menyempurnakan Program Kerja “GERBANG RAJA” Gerakan Membangun Rakyat Sejahtera yang fokus pada pelayanan sosial dasar pemberian bantuan stimulan (bedah rumah) hingga tahun 2023 dan pengembangan ekonomi masyarakat melalui kearifan lokal dengan konsep terpadu, berkelanjutan dan mandiri sesuai potensi dusun atau kearifan lokal.</li>
+          <li>Mewujudkan Desa Ginunggung berdaya saing melalui peningkatan Sumber Daya Manusia dibidang pendidikan keterampilan dan kewirausahaan serta peningkatan hidup masyarakat yang sehat jasmani, rohani, lahir dan batin dalam Ridho Allah SWT untuk “Membangun Daya Sosial, Sejahtera, Kerja Bersama”.</li>
+        </ol>
+      </div>
+    </div>
+
+    <h2>Galeri Desa</h2>
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img src="images/kantor desa.jpg" alt="Kegiatan Budaya di Desa Ginunggung">
+        </div>
+        <div class="swiper-slide">
+          <img src="images/pemandangan pesisir desa ginunggung.jpg" alt="Pemandangan Pesisir Desa Ginunggung">
+        </div>
+        <div class="swiper-slide">
+          <img src="images/kota nibangun.jpeg" alt="Petani Menanam Bibit Padi di Desa Ginunggung">
+        </div>
+        <div class="swiper-slide">
+          <img src="images/kekayaan alam.jpeg" alt="Tradisi Lokal di Desa Ginunggung">
+        </div>
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+
+    <h2>Aktivitas Desa</h2>
+    <div class="activity-gallery">
+      <img src="images/kegiatan1.jpg" alt="Berjalan-jalan di antara hamparan sawah">
+      <img src="images/kegiatan2.jpg" alt="Mengikuti acara adat yang penuh warna">
+      <img src="images/kegiatan3.jpg" alt="Mencicipi makanan khas yang lezat">
+      <img src="images/kegiatan4.jpg" alt="Berjalan-jalan di antara hamparan sawah2">
+      <img src="images/kegiatan5.jpg" alt="Aktivitas lainnya di Desa Ginunggung">
+      <img src="images/kegiatan6.jpg" alt="Agjhjjj">
+      <img src="images/kegiatan15.jpg" alt="Agjhjjj">
+      <img src="images/kegiatan12.jpg" alt="Agjhjjj">
+      <img src="images/kegiatan24.jpg" alt="Aktivitas lainnya di Desa Ginunggung">
+      <img src="images/kegiatan23.jpg" alt="Aktivitas lainnya di Desa Ginunggung">
+      <img src="images/kegiatan22.jpg" alt="Aktivitas lainnya di Desa Ginunggung">
+      <img src="images/kegiatan20.jpg" alt="Aktivitas lainnya di Desa Ginunggung">
+      <img src="images/kegiatan11.jpg" alt="Agjhjjj">
+      <img src="images/kegiatan10.jpg" alt="Agjhjjj">
+      <img src="images/kegiatan21.jpg" alt="Agjhjjj">
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Desa Ginunggung. Semua Hak Dilindungi.</p>
+  </footer>
+
+  <script>
+    function toggleVisiMisi() {
+      const content = document.getElementById('visi-misi-content');
+      content.classList.toggle('active');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const swiper = new Swiper('.swiper', {
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        loop: true,
+      });
+    });
+  </script>
+</body>
+</html>
