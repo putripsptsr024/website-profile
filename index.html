@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  
   <title>Desa Ginunggung</title>
 </head>
 <body>
@@ -15,6 +16,7 @@
     </div>
     <div class="header-buttons">
       <button onclick="location.href='#profile';" class="nav-button">Profil Desa</button>
+      <button onclick="location.href='#pengumuman';" class="nav-button">Pengumuman</button>
       <button onclick="location.href='#map';" class="nav-button">Lokasi Desa</button>
       <!-- <button onclick="location.href='login.html';" class="login-button">Login Admin</button> -->
     </div>
@@ -31,12 +33,38 @@
   <section id="profile">
     <div class="profile-box">
       <h3>Profil Desa</h3>
-      <p>Ginunggung adalah kelurahan/ desa yang terletak di Kecamatan Galang, Kabupaten Tolitoli, Provinsi Sulawesi Tengah, Indonesia. Desa Ginunggung berkomitmen untuk menciptakan perubahan positif dan menjadi contoh bagi desa-desa lainnya!</p>
-      <p>Dipimpin oleh Kepala Desa H. Anwar Lihawa, Ginunggung tidak hanya berpartisipasi dalam lomba untuk meraih prestasi, tetapi juga bertekad untuk meningkatkan pelayanan pemerintahan dan pemberdayaan masyarakat sesuai dengan amanat Undang-Undang dan Permendagri No. 81 Tahun 2014.</p>
-      <p>Salah satu daya tarik utama Desa Ginunggung adalah penguatan kelembagaan sosial yang berfungsi sebagai pilar utama dalam sistem pemerintahan desa. Sejak 2022, desa ini telah melangkah maju dengan mengimplementasikan digitalisasi pelayanan melalui aplikasi non-tunai, dengan tingkat penggunaan mencapai 70%. 
-        Ini membuat Ginunggung menjadi percontohan desa cerdas yang memanfaatkan teknologi untuk kemajuan bersama.</p>
-      <p>Tak hanya itu, pada tahun 2025, Desa Ginunggung akan menjadi salah satu Desa Anti Korupsi, terintegrasi dengan sistem Kejaksaan Agung Republik Indonesia. Melalui inovasi ini, setiap pengeluaran dan belanja desa dilakukan secara transparan, menciptakan tata kelola keuangan yang akuntabel dan terpercaya. 
-        Bergabunglah dengan kami dan saksikan bagaimana Desa Ginunggung terus bertransformasi menjadi desa yang sejahtera dan berdaya saing!</p>
+      <div class="profile-container">
+        <div class="profile-text">
+          <p>Ginunggung adalah kelurahan/ desa yang terletak di Kecamatan Galang, Kabupaten Tolitoli, Provinsi Sulawesi Tengah, Indonesia. Desa Ginunggung berkomitmen untuk menciptakan perubahan positif dan menjadi contoh bagi desa-desa lainnya!</p>
+          <p>Dipimpin oleh Kepala Desa <strong>H. Anwar Lihawa, S. AP</strong>. Ginunggung tidak hanya berpartisipasi dalam lomba untuk meraih prestasi, tetapi juga bertekad untuk meningkatkan pelayanan pemerintahan dan pemberdayaan masyarakat sesuai dengan amanat Undang-Undang dan Permendagri No. 81 Tahun 2014.</p>
+          <p>Salah satu daya tarik utama Desa Ginunggung adalah penguatan kelembagaan sosial yang berfungsi sebagai pilar utama dalam sistem pemerintahan desa. Sejak 2022, desa ini telah melangkah maju dengan mengimplementasikan digitalisasi pelayanan melalui aplikasi non-tunai, dengan tingkat penggunaan mencapai 70%. Ini membuat Ginunggung menjadi percontohan desa cerdas yang memanfaatkan teknologi untuk kemajuan bersama.</p>
+          <p>Tak hanya itu, pada tahun 2025, Desa Ginunggung akan menjadi salah satu Desa Anti Korupsi, terintegrasi dengan sistem Kejaksaan Agung Republik Indonesia. Melalui inovasi ini, setiap pengeluaran dan belanja desa dilakukan secara transparan, menciptakan tata kelola keuangan yang akuntabel dan terpercaya. Bergabunglah dengan kami dan saksikan bagaimana Desa Ginunggung terus bertransformasi menjadi desa yang sejahtera dan berdaya saing!</p>
+        </div>
+        <div class="profile-image">
+          <img src="kepdes.png" alt="Profil Desa Ginunggung">
+        </div>
+      </div>
+    </div>
+  </section>   
+  
+  <section id="pengumuman">
+    <h3>Pengumuman</h3>
+    <div class="pengumuman-item">
+      <img src="doc/gdc18.png" alt="PENETAPAN PARTISIPASI SWADAYA MASYARAKAT" class="pengumuman-image">
+      <div class="pengumuman-text">
+        <h4>PENETAPAN PARTISIPASI SWADAYA MASYARAKAT</h4>
+        <!-- <p>Pada <strong>Rabu, 18 Maret 2025</strong>, Kegiatan ini diadakan di Aula/ Balai Desa. Untuk informasi lebih lanjut, unduh dokumen berikut :</p> -->
+        <a href="doc/PENGUMUMAN PEMBENAHAN PAGAR LINGKUNGAN DAN MASYARAKAT .pdf" target="_blank" class="pengumuman-link">Unduh PDF</a>
+      </div>
+    </div>
+  
+    <div class="pengumuman-item">
+      <img src="doc/gdc0.png" alt="PENETAPAN PARTISIPASI SWADAYA MASYARAKAT" class="pengumuman-image">
+        <div class="pengumuman-text">
+          <h4>PENYAMPAIAN KEPADA MASYARAKAT</h4>
+          <!-- <p>Pada <strong>Rabu, 18 Maret 2025</strong>, Kegiatan ini diadakan di Aula/ Balai Desa. Untuk informasi lebih lanjut, unduh dokumen berikut :</p> -->
+          <a href="doc/Penyampaian Kepada Masyarakat .pdf" target="_blank" class="pengumuman-link">Unduh PDF</a>
+        </div>
     </div>
   </section>  
 
@@ -48,46 +76,37 @@
   <section>
     <h3>Bilik Pengaduan Masyarakat</h3>
     <div class="complaint-form">
-      <form id="complaintForm">
-        <label for="name">Nama</label>
+      <form id="pengaduanForm">
+        <label for="name">Nama:</label>
         <input type="text" id="name" name="name" required>
-        <label for="complaint">Pengaduan</label>
-        <textarea id="complaint" name="complaint" rows="4" required></textarea>
+        <br>
+        <label for="complaint">Pengaduan:</label>
+        <textarea id="complaint" name="complaint" required></textarea>
+        <br>
         <button type="submit">Kirim</button>
       </form>
       
       <script>
-        document.getElementById("complaintForm").addEventListener("submit", function(e) {
-          e.preventDefault();
+        const scriptURL = "https://script.google.com/macros/s/AKfycbzyk4t29HP4EnIU9tkRdFy6YjpSUe8jp3zty1Ip-apycIvippnXYgfUUz6OwyWaACUwew/exec"; // Tempel URL Apps Script di sini
+        const form = document.getElementById('pengaduanForm');
       
-          const formData = new FormData(e.target);
-          const data = Object.fromEntries(formData.entries());
+        form.addEventListener('submit', e => {
+          e.preventDefault(); // Mencegah refresh halaman
+          const formData = new FormData(form);
       
-          const scriptURL = "https://script.google.com/macros/s/AKfycbw-5MAt7KXEIHV-8Zn31MCJAJCKTmuUqHjITaqY5Fm8R5Ectl6MCxCq8znvktTQ793I/exec"; 
-      
-          fetch(scriptURL, {
-            method: "POST",
-            body: JSON.stringify(data),
-            headers: {
-              "Content-Type": "application/json"
-            }
-          })
-            .then(response => response.text())
-            .then(message => {
-              alert(message);
-              e.target.reset();
-            })
-            .catch(error => {
-              console.error("Error!", error);
-              alert("Pengaduan gagal dikirim. Silakan coba lagi.");
-            });
+          fetch(scriptURL, { method: 'POST', body: formData })
+            .then(response => alert('Pengaduan berhasil dikirim!'))
+            .catch(error => alert('Terjadi kesalahan: ' + error.message));
         });
-      </script>     
+
+      </script>
+           
     </div> 
   </section>
 
   <footer>
     <p>&copy; 2025 Desa Ginunggung. Semua Hak Dilindungi.</p>
   </footer>
+  
 </body>
 </html>

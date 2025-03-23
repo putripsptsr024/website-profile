@@ -231,4 +231,79 @@ body {
     font-weight: bold;
   }
   
+  .profile-container {
+    display: flex;
+    align-items: center; /* Pusatkan secara vertikal */
+    gap: 20px; /* Jarak antara teks dan gambar */
+  }
   
+  .profile-text {
+    flex: 1; /* Teks mengambil ruang yang tersedia */
+    text-align: justify;
+  }
+  
+  .profile-image {
+    display: flex;
+    justify-content: center; /* Pusatkan secara horizontal */
+    align-items: center; /* Pusatkan secara vertikal */
+    flex: 0 0 300px; /* Tetapkan lebar tetap untuk gambar */
+  }
+  
+  .profile-image img {
+    width: 100%; /* Gambar menyesuaikan dengan div-nya */
+    max-width: 300px; /* Pastikan tidak terlalu besar */
+    border-radius: 12px; /* Melengkungkan sudut gambar */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan */
+  }
+  
+  #pengumuman {
+    padding: 20px;
+    background-color: #f9f9f9;
+    margin: 20px 0;
+    border-radius: 8px;
+  }
+  
+  #pengumuman h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 33px;
+    color: #333;
+  }
+  
+  #pengumuman .pengumuman-item {
+    display: flex;
+    align-items: center; /* Atur gambar dan teks agar sejajar secara vertikal */
+    gap: 20px; /* Jarak antara gambar dan teks */
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #ffffff;
+  }
+  
+  #pengumuman .pengumuman-image {
+    width: 150px; /* Ukuran gambar */
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  #pengumuman .pengumuman-text {
+    flex: 1; /* Agar teks memenuhi sisa ruang */
+  }
+  
+  #pengumuman .pengumuman-text h4 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  #pengumuman .pengumuman-link {
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  #pengumuman .pengumuman-link:hover {
+    text-decoration: underline;
+  }
