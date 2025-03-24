@@ -52,7 +52,7 @@
     <div class="pengumuman-item">
       <img src="doc/gdc18.png" alt="PENETAPAN PARTISIPASI SWADAYA MASYARAKAT" class="pengumuman-image">
       <div class="pengumuman-text">
-        <h4>PENGUMUMAN PEMBENAHAN PAGAR LINGKUNGAN DAN MASYARAKAT</h4>
+        <h4>PENETAPAN PARTISIPASI SWADAYA MASYARAKAT</h4>
         <!-- <p>Pada <strong>Rabu, 18 Maret 2025</strong>, Kegiatan ini diadakan di Aula/ Balai Desa. Untuk informasi lebih lanjut, unduh dokumen berikut :</p> -->
         <a href="doc/PENETAPAN PARTISIPASI SWADAYA MASYARAKAT.pdf" target="_blank" class="pengumuman-link">Unduh PDF</a>
       </div>
@@ -85,24 +85,26 @@
         <br>
         <button type="submit">Kirim</button>
       </form>
-      
+  
       <script>
-        const scriptURL = "https://script.google.com/macros/s/AKfycbzyk4t29HP4EnIU9tkRdFy6YjpSUe8jp3zty1Ip-apycIvippnXYgfUUz6OwyWaACUwew/exec"; // Tempel URL Apps Script di sini
+        const scriptURL = "https://script.google.com/macros/s/AKfycbzpDvN0jHi2AMxIarT_37Bkn8raPlbVWF65U86UzmTiNisCBtd6FMY9J9b6ZD2m666N/exec"; // URL Web App
         const form = document.getElementById('pengaduanForm');
-      
+  
         form.addEventListener('submit', e => {
           e.preventDefault(); // Mencegah refresh halaman
           const formData = new FormData(form);
-      
+  
           fetch(scriptURL, { method: 'POST', body: formData })
-            .then(response => alert('Pengaduan berhasil dikirim!'))
+            .then(response => response.text())
+            .then(data => {
+              alert(data); // Pesan dari Apps Script
+              form.reset(); // Reset formulir
+            })
             .catch(error => alert('Terjadi kesalahan: ' + error.message));
         });
-
       </script>
-           
-    </div> 
-  </section>
+    </div>
+  </section>      
 
   <footer>
     <p>&copy; 2025 Desa Ginunggung. Semua Hak Dilindungi.</p>
