@@ -5,134 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js" defer></script>
-  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style-jelajahi.css">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background-color: #f7fdf7;
-    }
-    header {
-      display: flex;
-      align-items: center;
-      background-color: #2f855a;
-      color: white;
-      padding: 20px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    }
-    header img {
-      height: 60px;
-      margin-right: 20px;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-    }
-    .content {
-      padding: 20px;
-    }
-    .content h2 {
-      color: #2f855a;
-      font-size: 2rem;
-    }
-    .content p {
-      color: #4a5568;
-      line-height: 1.6;
-    }
-    .visi-misi {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    .visi-misi h2 {
-      margin-bottom: 20px;
-      cursor: pointer;
-      position: relative;
-      display: inline-block;
-    }
-    .visi-misi h2::after {
-      content: '\25BC';
-      position: absolute;
-      right: -25px;
-      font-size: 1rem;
-      transition: transform 0.3s ease;
-    }
-    .visi-misi h2:hover::after {
-      transform: scale(1.2);
-    }
-    .visi-misi-content {
-      display: none;
-      text-align: left;
-      margin-top: 20px;
-    }
-    .visi-misi-content.active {
-      display: block;
-    }
-    .swiper {
-      width: 100%;
-      height: auto;
-      margin-top: 20px;
-    }
-    .swiper-slide {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .swiper-slide img {
-      width: 80%;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-    .swiper-button-next,
-    .swiper-button-prev {
-      color: #2f855a;
-      width: auto;
-      height: auto;
-    }
-    .swiper-button-next {
-      right: 10px;
-    }
-    .swiper-button-prev {
-      left: 10px;
-    }
-    footer {
-      background-color: #2f855a;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-    }
-    .activity-gallery {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 20px;
-      margin-top: 30px;
-    }
-    .activity-gallery img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-    .justify-text {
-      text-align: justify;
-    }
-  </style>
   <title>Jelajahi Desa Ginunggung</title>
 </head>
 <body>
   <header>
-    <img src="logo-desa.png" alt="Logo Desa Ginunggung">
+    <img src="logo-desa.png" alt="Logo Desa Ginunggung" class="logo">
     <h1>Jelajahi Desa Ginunggung</h1>
   </header>
 
-  <div style="text-align: center; margin-top: 20px;">
-    <a href="index.html" style="text-decoration: none; color: white;">
-      <button style="background-color: #2f855a; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease;">
-        Kembali ke Beranda
-      </button>
-    </a>
+  <div class="back-button">
+    <a href="index.html" class="nav-button">Kembali ke Beranda</a>
   </div>
 
   <div class="content">
@@ -140,12 +24,12 @@
       <h2 onclick="toggleVisiMisi()">Visi & Misi Desa</h2>
       <div id="visi-misi-content" class="visi-misi-content justify-text">
         <h1>Visi :</h1>
-        <p><strong>GERBANG DAYA SOSIAL SEJAHTERA “KERJA BERSAMA” Wujudkan Ginunggung Desa Inklusif Ekonomi Tumbuh Merata dan Berkelanjutan SDGs Desa</strong></p>
+        <p><strong>GERBANG DAYA SOSIAL SEJAHTERA “KERJA BERSAMA” Wujudkan Ginunggung Desa Inklusif Ekonomi Tumbuh Merata dan Berkelanjutan SDGs Desa</strong></p>
         <h4>NILAI – NILAI YANG MELANDASI :</h4>
         <ol>
           <li>Bahwa Dengan Berlakunya Undang – Undang Nomor 23 Tahun 2004 Tentang Pemerintah Daerah Dalam Wujud Otonomi Daerah Secara Utuh, Luas Nyata Dalam Kerangka Negara Kesatuan Republik Indonesia Sesuai Arah Desentralisasi Bagi Desa Dan Kabupaten Maka Perlu Mengoptimalisasikan Fungsi Dusun Sebagai Pelaksana Terdepan Untuk Melayani Masyarakat.</li>
           <li>Bahwa Dalam Upaya Untuk Mengantisipasi Aspirasi Masyarakat Yang Terus Berkembang Dan Menjaga Efisiensi Serta Efektifitas Penyelenggaraan Pemerintahan Yang Akhirnya Bernuansa Pada Pemberian Pelayanan Masyarakat Yang Hakekatnya Semakin Lama Semakin Baik Di Rasakan Disamping Untuk Memberikan Peluang Peran Serta Masayrakat Dalam Kegiatan Masyarakat Dalam Kegiatan Pemerintahan, Pembangunan Dan Kemasyarakatan Secara Lebih Luas Dalam Konteks Demokrasi.</li>
-          <li>Bahwa Dengan Berdasarkan Undang – Undang Desa No 06 Tahun 2014 Penyelnggaraan Ppemerintahan Melalui Pemberdayaan Perangkat Desa Dusun RTDan RWSerta Kelembagaan Organisasi Sosial Kemasyarkatan Dapat Meningkatkan Dan Mempercepat Pelayanan Untuk Pemetaan Pembangunan Di Bidang  Kemasyarakatan.</li>
+          <li>Bahwa Dengan Berdasarkan Undang – Undang Desa No 06 Tahun 2014 Penyelnggaraan Ppemerintahan Melalui Pemberdayaan Perangkat Desa Dusun RTDan RWSerta Kelembagaan Organisasi Sosial Kemasyarkatan Dapat Meningkatkan Dan Mempercepat Pelayanan Untuk Pemetaan Pembangunan Di Bidang Kemasyarakatan.</li>
         </ol>
         <h1>Misi :</h1>
         <ol>
@@ -157,48 +41,42 @@
     </div>
 
     <h2>Galeri Desa</h2>
-<div class="swiper">
-  <div class="swiper-wrapper">
-    <div class="swiper-slide">
-      <video controls style="width: 80%; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); margin-top: 60px;">
-        <source src="videos/zonaintegritas anti korupsi.mp4" type="video/mp4">
-        Browser Anda tidak mendukung video ini.
-      </video>
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <video controls style="width: 100%; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+            <source src="videos/zonaintegritas anti korupsi.mp4" type="video/mp4">
+            Browser Anda tidak mendukung video ini.
+          </video>
+        </div>
+        <div class="swiper-slide">
+          <video controls style="width: 100%; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+            <source src="videos/g2.mp4" type="video/mp4">
+            Browser Anda tidak mendukung video ini.
+          </video>
+        </div>
+        <div class="swiper-slide">
+          <video controls style="width: 100%; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+            <source src="videos/ginunggung1.mp4" type="video/mp4">
+            Browser Anda tidak mendukung video ini.
+          </video>
+        </div>
+        <div class="swiper-slide">
+          <img src="images/pemandangan pesisir desa ginunggung.jpg" alt="Pemandangan Pesisir Desa Ginunggung">
+        </div>
+        <div class="swiper-slide">
+          <img src="images/kekayaan alam.jpeg" alt="Tradisi Lokal di Desa Ginunggung">
+        </div>
+        <div class="swiper-slide">
+          <img src="images/jagung.jpg" alt="Pemandangan Pesisir Desa Ginunggung">
+        </div>
+        <div class="swiper-slide">
+          <img src="images/muri.jpg" alt="Pemandangan Pesisir Desa Ginunggung">
+        </div>
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
     </div>
-
-    <div class="swiper-slide">
-      <video controls style="width: 80%; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); margin-top: 60px;">
-        <source src="videos/g2.mp4" type="video/mp4">
-        Browser Anda tidak mendukung video ini.
-      </video>
-    </div>
-    
-    <div class="swiper-slide">
-      <video controls style="width: 80%; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); margin-top: 60px;">
-        <source src="videos/ginunggung1.mp4" type="video/mp4">
-        Browser Anda tidak mendukung video ini.
-      </video>
-    </div>
-
-    <div class="swiper-slide">
-      <img src="images/pemandangan pesisir desa ginunggung.jpg" alt="Pemandangan Pesisir Desa Ginunggung">
-    </div>
-
-    <div class="swiper-slide">
-      <img src="images/kekayaan alam.jpeg" alt="Tradisi Lokal di Desa Ginunggung">
-    </div>
-    
-    <div class="swiper-slide">
-      <img src="images/jagung.jpg" alt="Pemandangan Pesisir Desa Ginunggung">
-    </div>
-
-    <div class="swiper-slide">
-      <img src="images/muri.jpg" alt="Pemandangan Pesisir Desa Ginunggung">
-    </div>
-  </div>
-  <div class="swiper-button-next"></div>
-  <div class="swiper-button-prev"></div>
-</div>
 
     <h2>Aktivitas Desa</h2>
     <div class="activity-gallery">
@@ -226,8 +104,13 @@
   </div>
 
   <footer>
-    <p>&copy; 2025 Desa Ginunggung. Semua Hak Dilindungi.</p>
+    <p>© 2025 Desa Ginunggung. Semua Hak Dilindungi.</p>
   </footer>
+
+  <div id="imageModal" class="modal" style="display:none;">
+    <span id="closeModal" class="close-modal">&times;</span>
+    <img id="modalImage" class="modal-image">
+  </div>
 
   <script>
     function toggleVisiMisi() {
@@ -242,40 +125,33 @@
           prevEl: '.swiper-button-prev',
         },
         loop: true,
+        slidesPerView: 1,
+        spaceBetween: 10,
+      });
+
+      const images = document.querySelectorAll('.activity-gallery img');
+      const modal = document.getElementById('imageModal');
+      const modalImage = document.getElementById('modalImage');
+      const closeModal = document.getElementById('closeModal');
+
+      images.forEach(image => {
+        image.addEventListener('click', () => {
+          modal.style.display = 'flex';
+          modalImage.src = image.src;
+          modalImage.alt = image.alt;
+        });
+      });
+
+      closeModal.addEventListener('click', () => {
+        modal.style.display = 'none';
+      });
+
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.style.display = 'none';
+        }
       });
     });
   </script>
 </body>
-
-<div id="imageModal" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); justify-content: center; align-items: center; z-index: 1000;">
-  <span id="closeModal" style="position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer;">&times;</span>
-  <img id="modalImage" style="max-width: 90%; max-height: 90%; border-radius: 10px;">
-</div>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const images = document.querySelectorAll('.activity-gallery img');
-    const modal = document.getElementById('imageModal');
-    const modalImage = document.getElementById('modalImage');
-    const closeModal = document.getElementById('closeModal');
-
-    images.forEach(image => {
-      image.addEventListener('click', () => {
-        modal.style.display = 'flex';
-        modalImage.src = image.src;
-      });
-    });
-
-    closeModal.addEventListener('click', () => {
-      modal.style.display = 'none';
-    });
-
-    // Close modal when clicking outside the image
-    modal.addEventListener('click', (e) => {
-      if (e.target !== modalImage) {
-        modal.style.display = 'none';
-      }
-    });
-  });
-</script>
-
 </html>

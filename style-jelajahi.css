@@ -1,99 +1,388 @@
-/* Reset */
+/* Reset dan pengaturan dasar */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background-color: #f7fdf7;
-    color: #4a5568;
-    line-height: 1.6;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f7fdf7;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Header */
+header {
+  display: flex;
+  align-items: center;
+  background-color: #2f855a;
+  color: white;
+  padding: 15px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  flex-wrap: wrap;
+}
+
+header .logo {
+  height: 60px;
+  margin-right: 20px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+/* Back Button */
+.back-button {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.nav-button {
+  background-color: #2f855a;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  font-size: 1rem;
+}
+
+.nav-button:hover {
+  background-color: #276749;
+}
+
+/* Content */
+.content {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.content h2 {
+  color: #2f855a;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.content p {
+  color: #4a5568;
+  font-size: 1rem;
+}
+
+/* Visi & Misi */
+.visi-misi {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.visi-misi h2 {
+  margin-bottom: 20px;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  font-size: 1.8rem;
+}
+
+.visi-misi h2::after {
+  content: '\25BC';
+  position: absolute;
+  right: -25px;
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.visi-misi h2:hover::after {
+  transform: scale(1.2);
+}
+
+.visi-misi-content {
+  display: none;
+  text-align: left;
+  margin-top: 20px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.visi-misi-content.active {
+  display: block;
+}
+
+.justify-text {
+  text-align: justify;
+}
+
+.visi-misi-content h1 {
+  font-size: 1.5rem;
+  color: #2f855a;
+  margin-bottom: 10px;
+}
+
+.visi-misi-content h4 {
+  font-size: 1.2rem;
+  color: #2f855a;
+  margin: 15px 0 10px;
+}
+
+.visi-misi-content ol {
+  padding-left: 20px;
+}
+
+.visi-misi-content li {
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+/* Galeri Desa (Swiper) */
+/* Galeri Desa (Swiper) */
+.swiper {
+  width: 100%;
+  height: 500px; /* Atur tinggi tetap untuk konsistensi */
+  margin-top: 20px;
+  position: relative;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Pastikan slide mengisi tinggi container */
+}
+
+.swiper-slide img,
+.swiper-slide video {
+  width: 100%;
+  max-width: 800px;
+  max-height: 100%; /* Pastikan tidak melebihi tinggi container */
+  object-fit: contain; /* Pastikan gambar/video proporsional tanpa terpotong */
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #2f855a;
+  top: 50%; /* Posisikan di tengah vertikal */
+  transform: translateY(-50%); /* Pusatkan secara vertikal */
+  width: 40px;
+  height: 40px;
+  margin-top: 0; /* Hapus margin default Swiper */
+}
+
+.swiper-button-next {
+  right: 10px;
+}
+
+.swiper-button-prev {
+  left: 10px;
+}
+
+/* Media Queries untuk Responsivitas */
+@media (max-width: 768px) {
+  .swiper {
+    height: 400px; /* Kurangi tinggi untuk tablet/ponsel besar */
   }
-  
-  /* Header */
-  header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #2f855a;
-    color: white;
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+  .swiper-slide img,
+  .swiper-slide video {
+    max-width: 100%;
   }
-  
-  header img {
-    height: 50px;
-    margin-right: 15px;
-  }
-  
-  header h1 {
-    font-size: 2rem;
-    margin: 0;
-  }
-  
-  /* Main Content */
-  .content {
-    padding: 20px;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  
-  .content h2 {
-    font-size: 1.8rem;
-    color: #2f855a;
-    margin-bottom: 10px;
-  }
-  
-  .content p {
-    font-size: 1rem;
-    margin-bottom: 20px;
-  }
-  
-  /* Swiper Container */
-  .swiper-container {
-    width: 100%;
-    max-width: 800px;
-    margin: 20px auto;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  }
-  
-  .swiper-slide img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-  
-  /* Swiper Button Navigation */
+
   .swiper-button-next,
   .swiper-button-prev {
-    color: #2f855a;
+    width: 30px;
+    height: 30px;
   }
-  
-  .swiper-pagination-bullet {
-    background: #2f855a;
+}
+
+@media (max-width: 480px) {
+  .swiper {
+    height: 300px; /* Kurangi lagi untuk ponsel kecil */
   }
-  
-  /* Footer */
-  footer {
-    background-color: #2f855a;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px;
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+/* Aktivitas Desa */
+.activity-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.activity-gallery img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.activity-gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* Modal Image */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-image {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+}
+
+.close-modal {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: white;
+  font-size: 40px;
+  cursor: pointer;
+}
+
+.close-modal:hover {
+  color: #ccc;
+}
+
+/* Footer */
+footer {
+  background-color: #2f855a;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 40px;
+  font-size: 0.9rem;
+}
+
+/* Media Queries untuk Responsivitas */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 15px;
+  }
+
+  header .logo {
+    height: 50px;
+    margin-bottom: 10px;
+    margin-right: 0;
+  }
+
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  .back-button {
+    margin: 15px 0;
+  }
+
+  .nav-button {
+    padding: 8px 15px;
     font-size: 0.9rem;
   }
 
+  .content {
+    padding: 15px;
+  }
+
+  .content h2 {
+    font-size: 1.5rem;
+  }
+
+  .visi-misi h2 {
+    font-size: 1.5rem;
+  }
+
+  .visi-misi-content {
+    max-width: 100%;
+  }
+
+  .swiper-slide img,
   .swiper-slide video {
-    width: 80%;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-top: 60px;
+    max-width: 100%;
   }
-  
-  #imageModal img {
-    transition: transform 0.3s ease;
+
+  .activity-gallery {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
-  
-  #imageModal img:hover {
-    transform: scale(1.05);
+
+  .activity-gallery img {
+    height: 150px;
   }
-  
+
+  footer {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.2rem;
+  }
+
+  .nav-button {
+    font-size: 0.85rem;
+    padding: 6px 12px;
+  }
+
+  .content h2 {
+    font-size: 1.2rem;
+  }
+
+  .visi-misi h2 {
+    font-size: 1.2rem;
+  }
+
+  .visi-misi-content h1 {
+    font-size: 1.2rem;
+  }
+
+  .visi-misi-content h4 {
+    font-size: 1rem;
+  }
+
+  .visi-misi-content li {
+    font-size: 0.9rem;
+  }
+
+  .activity-gallery {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+
+  .activity-gallery img {
+    height: 120px;
+  }
+
+  .modal-image {
+    max-width: 95%;
+    max-height: 95%;
+  }
+
+  .close-modal {
+    top: 15px;
+    right: 20px;
+    font-size: 30px;
+  }
+}

@@ -3,39 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  
   <title>Desa Ginunggung</title>
+  <!-- Tambahkan Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <header>
-    <img src="logo-desa.png" alt="Logo Desa Ginunggung">
-    <div>
+    <img src="logo-desa.png" alt="Logo Desa Ginunggung" class="logo">
+    <div class="header-title">
       <h1>Sistem Informasi Desa Ginunggung</h1>
     </div>
     <div class="header-buttons">
       <button onclick="location.href='#profile';" class="nav-button">Profil Desa</button>
       <button onclick="location.href='#pengumuman';" class="nav-button">Pengumuman</button>
       <button onclick="location.href='#map';" class="nav-button">Lokasi Desa</button>
-      <!-- <button onclick="location.href='login.html';" class="login-button">Login Admin</button> -->
     </div>
   </header>
 
   <div class="hero">
-    <div>
+    <div class="hero-content">
       <h2>Selamat Datang di Desa Ginunggung</h2>
       <p>Sabatuan Gugutu, Liok Suang Lipu.</p>
       <button onclick="location.href='jelajahi.html';">Jelajahi Desa</button>
     </div>
   </div>
 
-  <section id="profile">
+  <section id="profile" class="section">
     <div class="profile-box">
       <h3>Profil Desa</h3>
       <div class="profile-container">
         <div class="profile-text">
-          <p>Ginunggung adalah kelurahan/ desa yang terletak di Kecamatan Galang, Kabupaten Tolitoli, Provinsi Sulawesi Tengah, Indonesia. Desa Ginunggung berkomitmen untuk menciptakan perubahan positif dan menjadi contoh bagi desa-desa lainnya!</p>
+          <p>Ginunggung adalah kelurahan/desa yang terletak di Kecamatan Galang, Kabupaten Tolitoli, Provinsi Sulawesi Tengah, Indonesia. Desa Ginunggung berkomitmen untuk menciptakan perubahan positif dan menjadi contoh bagi desa-desa lainnya!</p>
           <p>Dipimpin oleh Kepala Desa <strong>H. Anwar Lihawa, S. AP</strong>. Ginunggung tidak hanya berpartisipasi dalam lomba untuk meraih prestasi, tetapi juga bertekad untuk meningkatkan pelayanan pemerintahan dan pemberdayaan masyarakat sesuai dengan amanat Undang-Undang dan Permendagri No. 81 Tahun 2014.</p>
           <p>Salah satu daya tarik utama Desa Ginunggung adalah penguatan kelembagaan sosial yang berfungsi sebagai pilar utama dalam sistem pemerintahan desa. Sejak 2022, desa ini telah melangkah maju dengan mengimplementasikan digitalisasi pelayanan melalui aplikasi non-tunai, dengan tingkat penggunaan mencapai 70%. Ini membuat Ginunggung menjadi percontohan desa cerdas yang memanfaatkan teknologi untuk kemajuan bersama.</p>
           <p>Tak hanya itu, pada tahun 2025, Desa Ginunggung akan menjadi salah satu Desa Anti Korupsi, terintegrasi dengan sistem Kejaksaan Agung Republik Indonesia. Melalui inovasi ini, setiap pengeluaran dan belanja desa dilakukan secara transparan, menciptakan tata kelola keuangan yang akuntabel dan terpercaya. Bergabunglah dengan kami dan saksikan bagaimana Desa Ginunggung terus bertransformasi menjadi desa yang sejahtera dan berdaya saing!</p>
@@ -45,116 +45,303 @@
         </div>
       </div>
     </div>
+
+    <!-- Bagian Indeks Desa Membangun (IDM) dengan Pie Chart -->
+    <div class="idm-section">
+      <h2 onclick="toggleIDM()">Indeks Desa Membangun (IDM) - Statistik</h2>
+      <div id="idm-content" class="idm-content">
+        <p>Berikut adalah visualisasi statistik Desa Ginunggung berdasarkan Indeks Desa Membangun (IDM) yang mencakup ketahanan sosial:</p>
+        <!-- Pie Chart untuk Ketahanan Penduduk -->
+        <div class="chart-container">
+          <h4>Distribusi Ketahanan Penduduk</h4>
+          <canvas id="populationChart"></canvas>
+          <p class="chart-fallback">Jika diagram tidak muncul: Ketahanan Penduduk - Laki-laki: 1.107 (50%), Perempuan: 1.108 (50%)</p>
+        </div>
+
+        <!-- Pie Chart untuk Ketahanan Kelembagaan -->
+        <div class="chart-container">
+          <h4>Distribusi Ketahanan Kelembagaan</h4>
+          <canvas id="institutionChart"></canvas>
+          <p class="chart-fallback">Jika diagram tidak muncul: Ketahanan Kelembagaan - Aktif: 70%, Tidak Aktif: 30%</p>
+        </div>
+
+        <!-- Pie Chart untuk Ketahanan Budaya -->
+        <div class="chart-container">
+          <h4>Distribusi Ketahanan Budaya</h4>
+          <canvas id="cultureChart"></canvas>
+          <p class="chart-fallback">Jika diagram tidak muncul: Ketahanan Budaya - Islam: %, Kristen: %, Katholik: %, Hindu: 4%, Budha: 4% (Silakan isi data)</p>
+        </div>
+
+        <!-- Pie Chart untuk Ketahanan Ekonomi Sosial -->
+        <div class="chart-container">
+          <h4>Distribusi Ketahanan Ekonomi Sosial</h4>
+          <canvas id="economyChart"></canvas>
+          <p class="chart-fallback">Jika diagram tidak muncul: Ketahanan Ekonomi Sosial - Tidak Miskin: 85%, Miskin: 15%</p>
+        </div>
+
+        <!-- Pie Chart untuk Ketahanan Kesehatan -->
+        <div class="chart-container">
+          <h4>Distribusi Ketahanan Kesehatan</h4>
+          <canvas id="healthChart"></canvas>
+          <p class="chart-fallback">Jika diagram tidak muncul: Ketahanan Kesehatan - Memiliki Akses: 80%, Tidak Memiliki Akses: 20%</p>
+        </div>
+
+        <!-- Pie Chart untuk Ketahanan Lingkungan Sosial -->
+        <div class="chart-container">
+          <h4>Distribusi Ketahanan Lingkungan Sosial</h4>
+          <canvas id="environmentChart"></canvas>
+          <p class="chart-fallback">Jika diagram tidak muncul: Ketahanan Lingkungan Sosial - Tahan Bencana: 60%, Tidak Tahan Bencana: 40%</p>
+        </div>
+
+        <p>Status IDM Desa Ginunggung (hipotetis): <strong>Berkembang</strong> dengan nilai IDM 0,65 (skor 0,5989 - 0,7072).</p>
+      </div>
+    </div>
   </section>   
-  
-  <section id="pengumuman">
+
+  <section id="pengumuman" class="section">
     <h3>Pengumuman</h3>
     <div class="pengumuman-item">
-      <img src="doc/peta-evakuasi.jpg" alt="PETA JALUR EVAKUASI DAN TITIK KUMPUL DI KANTOR DESA GINUNGGUNG" class="pengumuman-image">
-        <div class="pengumuman-text">
-          <h4>PEMERINTAH DESA GINUNGGUNG MENYAMPAIKAN KEPADA MASYARAKAT DESA GINUNGGUNG, PETA JALUR EVAKUASI DAN LOKASI TITIK KUMPUL DI KANTOR DESA GINUNGGUNG SEBAGAI LANGKAH MENGURANGI DAMPAK BENCANA MAUPUN KORBAN JIWA JIKALAU TERJADI BENCANA ALAM.</h4>
-          <!-- <p>Pada <strong>Rabu, 18 Maret 2025</strong>, Kegiatan ini diadakan di Aula/ Balai Desa. Untuk informasi lebih lanjut, unduh dokumen berikut :</p> -->
-          <a href="doc/peta-evakuasi.jpg" target="_blank" class="pengumuman-link">Unduh Peta</a>
-        </div>
+      <img src="doc/peta-evakuasi.jpg" alt="Peta Jalur Evakuasi dan Titik Kumpul" class="pengumuman-image">
+      <div class="pengumuman-text">
+        <h4>Peta Jalur Evakuasi dan Titik Kumpul</h4>
+        <p>Pemerintah Desa Ginunggung menyampaikan peta jalur evakuasi dan lokasi titik kumpul di Kantor Desa Ginunggung sebagai langkah mengurangi dampak bencana maupun korban jiwa jika terjadi bencana alam.</p>
+        <a href="doc/peta-evakuasi.jpg" target="_blank" class="pengumuman-link">Unduh Peta</a>
+      </div>
     </div>
 
     <div class="pengumuman-item">
       <img src="doc/gdc18.png" alt="PENETAPAN PARTISIPASI SWADAYA MASYARAKAT" class="pengumuman-image">
       <div class="pengumuman-text">
         <h4>PENETAPAN PARTISIPASI SWADAYA MASYARAKAT</h4>
-        <!-- <p>Pada <strong>Rabu, 18 Maret 2025</strong>, Kegiatan ini diadakan di Aula/ Balai Desa. Untuk informasi lebih lanjut, unduh dokumen berikut :</p> -->
+        <p>Pemerintah Desa Ginunggung menetapkan partisipasi swadaya masyarakat untuk mendukung pembangunan desa melalui kontribusi tenaga dan dana sesuai dengan program yang telah disepakati.</p>
         <a href="doc/PENETAPAN PARTISIPASI SWADAYA MASYARAKAT.pdf" target="_blank" class="pengumuman-link">Unduh PDF</a>
       </div>
     </div>
-  
+
     <div class="pengumuman-item">
       <img src="doc/gdc0.png" alt="PENYAMPAIAN KEPADA MASYARAKAT" class="pengumuman-image">
-        <div class="pengumuman-text">
-          <h4>PENYAMPAIAN KEPADA MASYARAKAT</h4>
-          <!-- <p>Pada <strong>Rabu, 18 Maret 2025</strong>, Kegiatan ini diadakan di Aula/ Balai Desa. Untuk informasi lebih lanjut, unduh dokumen berikut :</p> -->
-          <a href="doc/Penyampaian Kepada Masyarakat .pdf" target="_blank" class="pengumuman-link">Unduh PDF</a>
-        </div>
+      <div class="pengumuman-text">
+        <h4>PENYAMPAIAN KEPADA MASYARAKAT</h4>
+        <p>Pemerintah Desa Ginunggung menyampaikan informasi terkait kebijakan dan program pembangunan kepada masyarakat melalui pertemuan dan media resmi desa.</p>
+        <a href="doc/Penyampaian Kepada Masyarakat.pdf" target="_blank" class="pengumuman-link">Unduh PDF</a>
+      </div>
     </div>
 
     <div class="pengumuman-item">
       <img src="doc/PERDES PENGENDALIAN GRATIFIKASI.png" alt="PERDES PENGENDALIAN GRATIFIKASI" class="pengumuman-image">
-        <div class="pengumuman-text">
-          <h4>PERDES PENGENDALIAN GRATIFIKASI</h4>
-          <!-- <p>Pada <strong>Rabu, 18 Maret 2025</strong>, Kegiatan ini diadakan di Aula/ Balai Desa. Untuk informasi lebih lanjut, unduh dokumen berikut :</p> -->
-          <a href="doc/PERDES PENGENDALIAN GRATIFIKASI.pdf" target="_blank" class="pengumuman-link">Unduh PDF</a>
-        </div>
+      <div class="pengumuman-text">
+        <h4>PERDES PENGENDALIAN GRATIFIKASI</h4>
+        <p>Peraturan Desa (Perdes) ini mengatur pengendalian gratifikasi untuk memastikan tata kelola pemerintahan desa yang bersih dan transparan sesuai dengan regulasi yang berlaku.</p>
+        <a href="doc/PERDES PENGENDALIAN GRATIFIKASI.pdf" target="_blank" class="pengumuman-link">Unduh PDF</a>
+      </div>
     </div>
 
     <div class="pengumuman-item">
       <img src="doc/Maklumat Pelayanan.png" alt="Maklumat Pelayanan" class="pengumuman-image">
-        <div class="pengumuman-text">
-          <h4>Maklumat Pelayanan</h4>
-          <!-- <p>Pada <strong>Rabu, 18 Maret 2025</strong>, Kegiatan ini diadakan di Aula/ Balai Desa. Untuk informasi lebih lanjut, unduh dokumen berikut :</p> -->
-          <a href="doc/Maklumat Pelayanan .pdf" target="_blank" class="pengumuman-link">Unduh PDF</a>
-        </div>
+      <div class="pengumuman-text">
+        <h4>MAKLUMAT PELAYANAN</h4>
+        <p>Maklumat ini berisi informasi layanan publik yang disediakan oleh Desa Ginunggung, termasuk prosedur dan jadwal pelayanan untuk kemudahan masyarakat.</p>
+        <a href="doc/Maklumat Pelayanan.pdf" target="_blank" class="pengumuman-link">Unduh PDF</a>
+      </div>
     </div>
 
     <div class="pengumuman-item">
       <img src="doc/Surat Keterangan Dari APH.png" alt="Surat Keterangan Dari APH" class="pengumuman-image">
-        <div class="pengumuman-text">
-          <h4>Surat Keterangan Dari APH</h4>
-          <!-- <p>Pada <strong>Rabu, 18 Maret 2025</strong>, Kegiatan ini diadakan di Aula/ Balai Desa. Untuk informasi lebih lanjut, unduh dokumen berikut :</p> -->
-          <a href="doc/Surat Keterangan Dari APH.pdf" target="_blank" class="pengumuman-link">Unduh PDF</a>
-        </div>
+      <div class="pengumuman-text">
+        <h4>SURAT KETERANGAN DARI APH</h4>
+        <p>Surat keterangan dari Aparat Penegak Hukum (APH) terkait status hukum desa atau warga yang dapat digunakan untuk keperluan administratif.</p>
+        <a href="doc/Surat Keterangan Dari APH.pdf" target="_blank" class="pengumuman-link">Unduh PDF</a>
+      </div>
     </div>
 
     <div class="pengumuman-item">
       <img src="doc/SURVEI KEPUASAN MASYARAKAT TERHADAP PELAYANAN PUBLIK DESA GINUNGGUNG.png" alt="SURVEI KEPUASAN MASYARAKAT TERHADAP PELAYANAN PUBLIK DESA GINUNGGUNG" class="pengumuman-image">
-        <div class="pengumuman-text">
-          <h4>SURVEI KEPUASAN MASYARAKAT TERHADAP PELAYANAN PUBLIK DESA GINUNGGUNG</h4>
-          <!-- <p>Pada <strong>Rabu, 18 Maret 2025</strong>, Kegiatan ini diadakan di Aula/ Balai Desa. Untuk informasi lebih lanjut, unduh dokumen berikut :</p> -->
-          <a href="doc/SURVEI KEPUASAN MASYARAKAT TERHADAP PELAYANAN PUBLIK DESA GINUNGGUNG.pdf" target="_blank" class="pengumuman-link">Unduh PDF</a>
-        </div>
+      <div class="pengumuman-text">
+        <h4>SURVEI KEPUASAN MASYARAKAT TERHADAP PELAYANAN PUBLIK DESA GINUNGGUNG</h4>
+        <p>Hasil survei ini mencerminkan tingkat kepuasan masyarakat terhadap pelayanan publik di Desa Ginunggung, sebagai dasar evaluasi dan perbaikan layanan.</p>
+        <a href="doc/SURVEI KEPUASAN MASYARAKAT TERHADAP PELAYANAN PUBLIK DESA GINUNGGUNG.pdf" target="_blank" class="pengumuman-link">Unduh PDF</a>
+      </div>
     </div>
-
   </section>  
 
-  <section id="map" class="map">
+  <section id="map" class="section map">
     <h3>Lokasi Desa Ginunggung</h3>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.0673862266262!2d120.79888411071738!3d1.1116518622901486!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32712eab7d810001%3A0x95b49064491eac49!2sKantor%20Desa%20Ginunggung!5e0!3m2!1sid!2sid!4v1697549600533!5m2!1sid!2sid"></iframe>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.0673862266262!2d120.79888411071738!3d1.1116518622901486!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32712eab7d810001%3A0x95b49064491eac49!2sKantor%20Desa%20Ginunggung!5e0!3m2!1sid!2sid!4v1697549600533!5m2!1sid!2sid" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
   </section>
 
-  <section>
+  <section class="section">
     <h3>Bilik Pengaduan Masyarakat</h3>
     <div class="complaint-form">
       <form id="pengaduanForm">
-        <label for="name">Nama:</label>
-        <input type="text" id="name" name="name" required>
-        <br>
-        <label for="complaint">Pengaduan:</label>
-        <textarea id="complaint" name="complaint" required></textarea>
-        <br>
+        <div class="form-group">
+          <label for="name">Nama:</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="complaint">Pengaduan:</label>
+          <textarea id="complaint" name="complaint" required></textarea>
+        </div>
         <button type="submit">Kirim</button>
       </form>
-  
-      <script>
-        const scriptURL = "https://script.google.com/macros/s/AKfycbzpDvN0jHi2AMxIarT_37Bkn8raPlbVWF65U86UzmTiNisCBtd6FMY9J9b6ZD2m666N/exec"; // URL Web App
-        const form = document.getElementById('pengaduanForm');
-  
-        form.addEventListener('submit', e => {
-          e.preventDefault(); // Mencegah refresh halaman
-          const formData = new FormData(form);
-  
-          fetch(scriptURL, { method: 'POST', body: formData })
-            .then(response => response.text())
-            .then(data => {
-              alert(data); // Pesan dari Apps Script
-              form.reset(); // Reset formulir
-            })
-            .catch(error => alert('Terjadi kesalahan: ' + error.message));
-        });
-      </script>
     </div>
   </section>      
 
   <footer>
-    <p>&copy; 2025 Desa Ginunggung. Semua Hak Dilindungi.</p>
+    <p>© 2025 Desa Ginunggung. Semua Hak Dilindungi.</p>
   </footer>
-  
+
+  <script>
+    const scriptURL = "https://script.google.com/macros/s/AKfycbzpDvN0jHi2AMxIarT_37Bkn8raPlbVWF65U86UzmTiNisCBtd6FMY9J9b6ZD2m666N/exec";
+    const form = document.getElementById('pengaduanForm');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const formData = new FormData(form);
+
+      fetch(scriptURL, { method: 'POST', body: formData })
+        .then(response => response.text())
+        .then(data => {
+          alert(data);
+          form.reset();
+        })
+        .catch(error => alert('Terjadi kesalahan: ' + error.message));
+    });
+
+    // Pastikan DOM sudah dimuat sebelum inisialisasi chart
+    document.addEventListener('DOMContentLoaded', () => {
+      // Inisialisasi chart untuk Ketahanan Penduduk
+      const ctxPopulation = document.getElementById('populationChart').getContext('2d');
+      const populationChart = new Chart(ctxPopulation, {
+        type: 'pie',
+        data: {
+          labels: ['Laki-laki (50%)', 'Perempuan (50%)'],
+          datasets: [{
+            data: [50, 50],
+            backgroundColor: ['#FF6384', '#36A2EB']
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom' },
+            title: { display: true, text: 'Distribusi Ketahanan Penduduk' }
+          }
+        }
+      });
+
+      // Inisialisasi chart untuk Ketahanan Kelembagaan
+      const ctxInstitution = document.getElementById('institutionChart').getContext('2d');
+      const institutionChart = new Chart(ctxInstitution, {
+        type: 'pie',
+        data: {
+          labels: ['Aktif (70%)', 'Tidak Aktif (30%)'],
+          datasets: [{
+            data: [70, 30],
+            backgroundColor: ['#4BC0C0', '#FFCE56']
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom' },
+            title: { display: true, text: 'Distribusi Ketahanan Kelembagaan' }
+          }
+        }
+      });
+
+      // Inisialisasi chart untuk Ketahanan Budaya
+      const ctxCulture = document.getElementById('cultureChart').getContext('2d');
+      const cultureChart = new Chart(ctxCulture, {
+        type: 'pie',
+        data: {
+          labels: ['Islam', 'Kristen', 'Katholik', 'Hindu', 'Budha'],
+          datasets: [{
+            data: [0, 0, 0, 0, 0], // Placeholder, silakan ganti dengan data aktual
+            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF']
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom' },
+            title: { display: true, text: 'Distribusi Ketahanan Budaya' }
+          }
+        }
+      });
+
+      // Inisialisasi chart untuk Ketahanan Ekonomi Sosial
+      const ctxEconomy = document.getElementById('economyChart').getContext('2d');
+      const economyChart = new Chart(ctxEconomy, {
+        type: 'pie',
+        data: {
+          labels: ['Tidak Miskin (85%)', 'Miskin (15%)'],
+          datasets: [{
+            data: [85, 15],
+            backgroundColor: ['#36A2EB', '#FF9F40']
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom' },
+            title: { display: true, text: 'Distribusi Ketahanan Ekonomi Sosial' }
+          }
+        }
+      });
+
+      // Inisialisasi chart untuk Ketahanan Kesehatan
+      const ctxHealth = document.getElementById('healthChart').getContext('2d');
+      const healthChart = new Chart(ctxHealth, {
+        type: 'pie',
+        data: {
+          labels: ['Memiliki Akses (80%)', 'Tidak Memiliki Akses (20%)'],
+          datasets: [{
+            data: [80, 20],
+            backgroundColor: ['#4BC0C0', '#FF6384']
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom' },
+            title: { display: true, text: 'Distribusi Ketahanan Kesehatan' }
+          }
+        }
+      });
+
+      // Inisialisasi chart untuk Ketahanan Lingkungan Sosial
+      const ctxEnvironment = document.getElementById('environmentChart').getContext('2d');
+      const environmentChart = new Chart(ctxEnvironment, {
+        type: 'pie',
+        data: {
+          labels: ['Tahan Bencana (60%)', 'Tidak Tahan Bencana (40%)'],
+          datasets: [{
+            data: [60, 40],
+            backgroundColor: ['#9966FF', '#FFCE56']
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom' },
+            title: { display: true, text: 'Distribusi Ketahanan Lingkungan Sosial' }
+          }
+        }
+      });
+
+      console.log('Chart.js berhasil dimuat dan chart diinisialisasi.');
+    });
+
+    function toggleIDM() {
+      const content = document.getElementById('idm-content');
+      content.classList.toggle('active');
+    }
+  </script>
 </body>
 </html>
