@@ -1,0 +1,1827 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BELANTARA - Belanja Langsung Antar</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a3c34 0%, #4a7043 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #ff6f00, #e65b00);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 111, 0, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Auth Forms */
+        .auth-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .auth-form {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            text-align: center;
+        }
+
+        .auth-form h2 {
+            margin-bottom: 30px;
+            color: #333;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .auth-form h2::before {
+            content: "🔒";
+            margin-right: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: #1a3c34;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(26, 60, 52, 0.1);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .auth-form .btn-primary {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 25px;
+        }
+
+        .auth-form a {
+            color: #ff6f00;
+            text-decoration: none;
+        }
+
+        .auth-form a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: block;
+        }
+
+        .welcome-section {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .welcome-section h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .welcome-section p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Category Sections */
+        .category-section {
+            margin-top: 40px;
+        }
+
+        .category-section h2 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-info h3 {
+            color: #000000;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .product-info p {
+            color: #000000;
+            margin-bottom: 15px;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #000000;
+            margin-bottom: 15px;
+        }
+
+        /* Certificates Section */
+        .certificates-section {
+            margin-top: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .certificates-section h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .certificate-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .certificate-card embed {
+            width: 100%;
+            height: 400px;
+            border: none;
+            border-radius: 10px;
+        }
+
+        /* Cart */
+        .cart-icon {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(45deg, #ff6f00, #e65b00);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(255, 111, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .cart-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        .cart-sidebar.open {
+            right: 0;
+        }
+
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none;
+        }
+
+        .cart-overlay.show {
+            display: block;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .checkout-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+        }
+
+        .total-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .address-input {
+            margin-bottom: 20px;
+        }
+
+        .address-input label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+        }
+
+        .address-input select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .address-input select:focus {
+            border-color: #1a3c34;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(26, 60, 52, 0.1);
+        }
+
+        /* Product Modal */
+        .product-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1002;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .product-modal-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            text-align: center;
+        }
+
+        .product-modal-content h2 {
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 1.5rem;
+        }
+
+        .variant-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .variant-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+        }
+
+        .variant-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .variant-group select:focus {
+            border-color: #1a3c34;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(26, 60, 52, 0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 15px;
+            }
+            .products-grid, .certificates-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            .nav-buttons {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .logo {
+                font-size: 1.8rem;
+            }
+            .welcome-section h1 {
+                font-size: 2.5rem;
+                margin-bottom: 15px;
+            }
+            .welcome-section p {
+                font-size: 1rem;
+                padding: 0 10px;
+            }
+            .products-grid, .certificates-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .product-card, .certificate-card {
+                padding: 20px;
+            }
+            .product-image {
+                height: 150px;
+                font-size: 2.5rem;
+            }
+            .certificate-card embed {
+                height: 300px;
+            }
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+                padding: 20px;
+            }
+            .product-modal-content {
+                width: 100%;
+                padding: 20px;
+            }
+            .cart-icon {
+                width: 55px;
+                height: 55px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 1.3rem;
+            }
+            .auth-form {
+                margin: 20px;
+                width: calc(100% - 40px);
+                padding: 30px 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+            .header {
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+            .logo {
+                font-size: 1.5rem;
+            }
+            .btn {
+                padding: 10px 18px;
+                font-size: 0.9rem;
+            }
+            .welcome-section h1 {
+                font-size: 2rem;
+                line-height: 1.2;
+            }
+            .welcome-section p {
+                font-size: 0.95rem;
+            }
+            .product-card, .certificate-card {
+                padding: 15px;
+                border-radius: 15px;
+            }
+            .product-image {
+                height: 120px;
+                font-size: 2rem;
+                border-radius: 10px;
+            }
+            .certificate-card embed {
+                height: 200px;
+            }
+            .product-info h3 {
+                font-size: 1.1rem;
+                margin-bottom: 8px;
+            }
+            .product-info p {
+                font-size: 0.9rem;
+                margin-bottom: 10px;
+            }
+            .product-price {
+                font-size: 1.2rem;
+                margin-bottom: 10px;
+            }
+            .cart-sidebar {
+                padding: 15px;
+            }
+            .cart-item {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
+                padding: 12px 0;
+            }
+            .cart-item > div:last-child {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .cart-icon {
+                width: 50px;
+                height: 50px;
+                bottom: 15px;
+                right: 15px;
+                font-size: 1.2rem;
+            }
+            .cart-count {
+                width: 22px;
+                height: 22px;
+                font-size: 0.75rem;
+            }
+            .auth-form, .product-modal-content {
+                margin: 10px;
+                width: calc(100% - 20px);
+                padding: 25px 20px;
+            }
+            .auth-form h2, .product-modal-content h2 {
+                font-size: 1.5rem;
+                margin-bottom: 25px;
+            }
+            .form-group input,
+            .form-group select,
+            .variant-group select {
+                padding: 12px;
+                font-size: 15px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .welcome-section h1 {
+                font-size: 1.8rem;
+            }
+            .product-card, .certificate-card {
+                padding: 12px;
+            }
+            .product-image {
+                height: 100px;
+                font-size: 1.8rem;
+            }
+            .certificate-card embed {
+                height: 150px;
+            }
+            .btn {
+                padding: 8px 15px;
+                font-size: 0.85rem;
+            }
+            .auth-form, .product-modal-content {
+                padding: 20px 15px;
+            }
+            .form-group input,
+            .form-group select,
+            .variant-group select {
+                padding: 10px;
+            }
+            .cart-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (hover: none) and (pointer: coarse) {
+            .btn {
+                min-height: 44px;
+                padding: 12px 20px;
+            }
+            .cart-icon {
+                min-width: 50px;
+                min-height: 50px;
+            }
+            .form-group input,
+            .form-group select,
+            .variant-group select {
+                min-height: 44px;
+                padding: 12px 15px;
+            }
+            .close-btn {
+                min-width: 44px;
+                min-height: 44px;
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 768px) and (orientation: landscape) {
+            .welcome-section {
+                margin-bottom: 20px;
+            }
+            .welcome-section h1 {
+                font-size: 2rem;
+                margin-bottom: 10px;
+            }
+            .products-grid, .certificates-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            .auth-form, .product-modal-content {
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .product-card, .certificate-card {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .product-card:nth-child(1), .certificate-card:nth-child(1) { animation-delay: 0.1s; }
+        .product-card:nth-child(2), .certificate-card:nth-child(2) { animation-delay: 0.2s; }
+        .product-card:nth-child(3), .certificate-card:nth-child(3) { animation-delay: 0.3s; }
+        .product-card:nth-child(4), .certificate-card:nth-child(4) { animation-delay: 0.4s; }
+        .product-card:nth-child(5), .certificate-card:nth-child(5) { animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <nav class="nav">
+                <div class="logo">
+                    <i class="fas fa-shopping-bag"></i> BELANTARA
+                </div>
+                <div class="nav-buttons" id="navButtons">
+                    <button class="btn btn-secondary" onclick="showLogin()">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </button>
+                    <button class="btn btn-primary" onclick="showRegister()">
+                        <i class="fas fa-user-plus"></i> Daftar
+                    </button>
+                </div>
+                <div class="nav-buttons" id="userNav" style="display: none;">
+                    <span id="userName" style="color: white; margin-right: 15px;"></span>
+                    <button class="btn btn-secondary" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> Keluar
+                    </button>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content" id="mainContent">
+            <div class="welcome-section">
+                <h1>🛍️ Selamat Datang di BELANTARA</h1>
+                <p>PEMERINTAH DESA GINUNGGUNG KECAMATAN GALANG KABUPATEN TOLITOLI PROVINSI SULAWESI TENGAH</p>
+                <p>BADAN USAHA MILIK DESA ALFATIHA GINUNGGUNG</p>
+                <p>UNIT USAHA TERPADU RUMAH TANGGA "KULINER MERDEKA"</p>
+                <p>~ LAYANAN DIGITAL BELANJA LANGSUNG ANTAR RAKYAT ~</p> 
+            </div>
+
+            <div class="certificates-section">
+                <h3>📜 Sertifikat dan Izin Resmi</h3>
+                <div class="certificates-grid">
+                    <div class="certificate-card">
+                        <h4>PERIZINAN BERUSAHA BERBASIS RISIKO</h4>
+                        <embed src="assets/certificates/PERIZINAN BERUSAHA BERBASIS RESIKO.pdf" type="application/pdf">
+                    </div>
+                    <div class="certificate-card">
+                        <h4>SERTIFIKAT HALAL</h4>
+                        <embed src="assets/certificates/SERTIFIKAT HALAL.pdf" type="application/pdf">
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-section">
+                <h2>🍪 Cemilan</h2>
+                <div class="products-grid" id="snackGrid"></div>
+            </div>
+
+            <div class="category-section">
+                <h2>🥤 Minuman</h2>
+                <div class="products-grid" id="beverageGrid"></div>
+            </div>
+
+            <div class="category-section">
+                <h2>🍽️ Makanan</h2>
+                <div class="products-grid" id="foodGrid"></div>
+            </div>
+        </div>
+
+        <!-- Product Modal -->
+        <div class="product-modal" id="productModal">
+            <div class="product-modal-content">
+                <button class="close-btn" onclick="closeProductModal()">×</button>
+                <h2 id="modalProductName"></h2>
+                <div class="variant-group">
+                    <label>Pilih Varian</label>
+                    <select id="variantSelect" required>
+                        <!-- Variants will be loaded here -->
+                    </select>
+                </div>
+                <button class="btn btn-primary" onclick="addToCartWithVariant()">
+                    <i class="fas fa-cart-plus"></i> Tambahkan ke Keranjang
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Shopping Cart -->
+    <div class="cart-icon" id="cartIcon" onclick="toggleCart()">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count" id="cartCount">0</span>
+    </div>
+
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <button class="close-btn" onclick="toggleCart()">
+            <i class="fas fa-times"></i>
+        </button>
+        <h3>🛒 Keranjang Belanja</h3>
+        <div id="cartItems">
+            <!-- Cart items will be displayed here -->
+        </div>
+        <div class="checkout-section">
+            <div class="total-price" id="totalPrice">Total: Rp 0</div>
+            <div class="address-input">
+                <label>Pilih Alamat Pengiriman</label>
+                <select id="deliveryAddress" required>
+                    <option value="" disabled selected>Pilih alamat</option>
+                    <option value="Aung">Aung</option>
+                    <option value="Bajugan">Bajugan</option>
+                    <option value="Ginunggung">Ginunggung</option>
+                    <option value="Kalangkangan">Kalangkangan</option>
+                    <option value="Kinopasan">Kinopasan</option>
+                    <option value="Lakatan">Lakatan</option>
+                    <option value="Lalos">Lalos</option>
+                    <option value="Lantapan">Lantapan</option>
+                    <option value="Malangga">Malangga</option>
+                    <option value="Ogomoli">Ogomoli</option>
+                    <option value="Sabang">Sabang</option>
+                    <option value="Sandana">Sandana</option>
+                    <option value="Tende">Tende</option>
+                    <option value="Tinigi">Tinigi</option>
+                </select>
+            </div>
+            <button class="btn btn-primary" style="width: 100%;" onclick="checkout()">
+                <i class="fas fa-check"></i> Checkout
+            </button>
+        </div>
+    </div>
+
+    <!-- Auth Forms -->
+    <div class="auth-container" id="authContainer">
+        <!-- Login Form -->
+        <div class="auth-form" id="loginForm">
+            <button class="close-btn" onclick="hideAuth()">×</button>
+            <h2>Login</h2>
+            <form onsubmit="return handleLogin(event)">
+                <div class="form-group">
+                    <label>Email atau No. HP</label>
+                    <input type="text" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-sign-in-alt"></i> Masuk
+                </button>
+            </form>
+            <p style="margin-top: 20px;">
+                Belum punya akun? <a href="#" onclick="showRegister()" style="color: #ff6f00;">Daftar di sini</a>
+            </p>
+        </div>
+
+        <!-- Register Form -->
+        <div class="auth-form" id="registerForm" style="display: none;">
+            <button class="close-btn" onclick="hideAuth()">×</button>
+            <h2>📝 Daftar Akun</h2>
+            <form onsubmit="return handleRegister(event)">
+                <div class="form-group">
+                    <label>Nama Lengkap (sesuai KTP)</label>
+                    <input type="text" id="regName" required>
+                </div>
+                <div class="form-group">
+                    <label>No. HP</label>
+                    <input type="tel" id="regPhone" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="regEmail" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="regPassword" required>
+                </div>
+                <div class="form-group">
+                    <label>Konfirmasi Password</label>
+                    <input type="password" id="regConfirmPassword" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    <i class="fas fa-user-plus"></i> Daftar
+                </button>
+            </form>
+            <p style="text-align: center; margin-top: 20px;">
+                Sudah punya akun? <a href="#" onclick="showLogin()" style="color: #ff6f00;">Login di sini</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Hardcoded product data with variants and categories
+        const products = [
+            {
+                id: 1,
+                name: "AMBAL",
+                price: 10000,
+                description: "- (KODE: KMC1)",
+                seller: "KULINER MERDEKA",
+                whatsapp: "082271624019",
+                image: "assets/image/ambal.png",
+                category: "cemilan",
+                variants: [
+                    { name: "", additionalPrice: 0 }
+                ]
+            },
+            {
+                id: 2,
+                name: "BANANA CRISPY",
+                price: 10000,
+                description: "NN. SUCITA (KODE: KMC2)",
+                seller: "KULINER MERDEKA",
+                whatsapp: "082271624019",
+                image: "assets/image/bananacrispy.jpeg",
+                category: "cemilan",
+                variants: [
+                    { name: "FLA COKLAT + TOPING SERUTAN COKLAT", additionalPrice: 0 },
+                    { name: "FLA COKLAT + TOPING SERUTAN KEJU", additionalPrice: 0 },
+                    { name: "FLA STRAWBERRY + TOPING SERUTAN COKLAT", additionalPrice: 0 },
+                    { name: "FLA STRAWBERRY + TOPING SERUTAN KEJU", additionalPrice: 0 },
+                    { name: "FLA TIRAMISU + TOPING SERUTAN COKLAT", additionalPrice: 0 },
+                    { name: "FLA TIRAMISU + TOPING SERUTAN KEJU", additionalPrice: 0 }
+                ]
+            },
+            {
+                id: 3,
+                name: "BANANA ROLL",
+                price: 10000,
+                description: "NN. SUCITA (KODE: KMC3)",
+                seller: "KULINER MERDEKA",
+                whatsapp: "082271624019",
+                image: "assets/image/bananaroll.jpeg",
+                category: "cemilan",
+                variants: [
+                    { name: "FLA COKLAT + TOPING SERUTAN COKLAT", additionalPrice: 0 },
+                    { name: "FLA COKLAT + TOPING SERUTAN KEJU", additionalPrice: 0 },
+                    { name: "FLA STRAWBERRY + TOPING SERUTAN COKLAT", additionalPrice: 0 },
+                    { name: "FLA STRAWBERRY + TOPING SERUTAN KEJU", additionalPrice: 0 },
+                    { name: "FLA TIRAMISU + TOPING SERUTAN COKLAT", additionalPrice: 0 },
+                    { name: "FLA TIRAMISU + TOPING SERUTAN KEJU", additionalPrice: 0 }
+                ]
+            },
+            {
+                id: 4,
+                name: "PISANG GORENG KEMBUNG",
+                price: 10000,
+                description: "NY. SARINI (KODE: KMC4)",
+                seller: "KULINER MERDEKA",
+                whatsapp: "082271624019",
+                image: "assets/image/pisang goreng kembung.png",
+                category: "cemilan",
+                variants: [
+                    { name: "FLA COKLAT + TOPING SERUTAN COKLAT", additionalPrice: 0 },
+                    { name: "FLA COKLAT + TOPING SERUTAN KEJU", additionalPrice: 0 },
+                    { name: "FLA STRAWBERRY + TOPING SERUTAN COKLAT", additionalPrice: 0 },
+                    { name: "FLA STRAWBERRY + TOPING SERUTAN KEJU", additionalPrice: 0 },
+                    { name: "FLA TIRAMISU + TOPING SERUTAN COKLAT", additionalPrice: 0 },
+                    { name: "FLA TIRAMISU + TOPING SERUTAN KEJU", additionalPrice: 0 }
+                ]
+            },
+            {
+                id: 32,
+                name: "ONDE-ONDE JAWA",
+                price: 10000,
+                description: "NY. YUNIATI (KODE: KMC5)",
+                seller: "KULINER MERDEKA",
+                whatsapp: "082271624019",
+                image: "assets/image/onde-ondejawa.png",
+                category: "cemilan",
+                variants: [
+                    { name: "", additionalPrice: 0 }
+                ]
+            },
+            {
+                id: 5,
+                name: "CUCUR",
+                price: 10000,
+                description: "NY. SARINI (KODE: KMC5)",
+                seller: "KULINER MERDEKA",
+                whatsapp: "082271624019",
+                image: "assets/image/cucur.png",
+                category: "cemilan",
+                variants: [
+                    { name: "", additionalPrice: 0 }
+                ]
+            },
+            {
+                id: 6,
+                name: "WINGKO G4",
+                price: 10000,
+                description: "TN. ANWAR (KODE: KMC6)",
+                seller: "KULINER MERDEKA",
+                whatsapp: "082271624019",
+                image: "assets/image/wingko g4.png",
+                category: "cemilan",
+                variants: [
+                    { name: "", additionalPrice: 0 }
+                ]
+            },
+            {
+                id: 7,
+                name: "TETU NIPA",
+                price: 10000,
+                description: "- (KODE: KMC7)",
+                seller: "KULINER MERDEKA",
+                whatsapp: "082271624019",
+                image: "assets/image/tetu nipa.png",
+                category: "cemilan",
+                variants: [
+                    { name: "GULA MERAH", additionalPrice: 0 },
+                    { name: "GULA PUTIH", additionalPrice: 0 }
+                ]
+            },
+            {
+                id: 8,
+                name: "SURABENG G4",
+                price: 10000,
+                description: "- (KODE: KMC8)",
+                seller: "KULINER MERDEKA",
+                whatsapp: "082271624019",
+                image: "assets/image/surabeng.png",
+                category: "cemilan",
+                variants: [
+                    { name: "", additionalPrice: 0 }
+                ]
+            },
+            {
+                id: 9,
+                name: "PUTU SOKKO BERAS KETAN",
+                price: 10000,
+                description: "- (KODE: KMC9)",
+                seller: "KULINER MERDEKA",
+                whatsapp: "082271624019",
+                image: "assets/image/putu sokko beras ketan.png",
+                category: "cemilan",
+                variants: [
+                    { name: "", additionalPrice: 0 }
+                ]
+            },
+            {
+                id: 10,
+                name: "MINUMAN ANEKA REMPAH NUSANTARA",
+                price: 3000,
+                description: "TN. ANWAR (KODE: KMMI1)",
+                seller: "KULINER MERDEKA",
+                whatsapp: "082271624019",
+                image: "assets/image/jus rempah nusantara.png",
+                category: "minuman",
+                variants: [
+                    { name: "", additionalPrice: 0 }
+                ]
+            },
+            {
+                id: 11,
+                name: "MINUMAN ANEKA REMPAH MADU PLUS SUSU KAMBING ETAWA",
+                price: 15000,
+                description: "TN. ANWAR (KODE: KMMI2)",
+                seller: "KULINER MERDEKA",
+                whatsapp: "082271624019",
+                image: "assets/image/jus aneka rempah madu plus susu kambing etawa.png",
+                category: "minuman",
+                variants: [
+                    { name: "", additionalPrice: 0 }
+                ]
+            },
+            {
+                id: 12,
+                name: "JUS ALPUKAT",
+                price: 10000,
+                description: "NY. SARINI (KODE: KMMI3)",
+                seller: "KULINER MERDEKA",
+                whatsapp: "082271624019",
+                image: "assets/image/jus alpukat.jpg",
+                category: "minuman",
+                variants: [
+                    { name: "", additionalPrice: 0 }
+                ]
+            },
+            {
+                id: 13,
+                name: "JUS BUAH NAGA",
+                price: 10000,
+                description: "NY. SARINI (KODE: KMMI4)",
+                seller: "KULINER MERDEKA",
+                whatsapp: "082271624019",
+                image: "assets/image/jus buah naga.png",
+                category: "minuman",
+                variants: [
+                    { name: "", additionalPrice: 0 }
+                ]
+            },
+            {
+                id: 14,
+                name: "JUS JERUK",
+                price: 10000,
+                description: "NY. SARINI (KODE: KMMI5)",
+                seller: "KULINER MERDEKA",
+                whatsapp: "082271624019",
+                image: "assets/image/jus jeruk.png",
+                category: "minuman",
+                variants: [
+                    { name: "", additionalPrice: 0 }
+                ]
+            },
+            {
+                id: 15,
+                name: "JUS LIDAH BUAYA",
+                price: 10000,
+                description: "TN. ANWAR (KODE: KMMI6)",
+                seller: "KULINER MERDEKA",
+                whatsapp: "082271624019",
+                image: "assets/image/jus lidah buaya.png",
+                category: "minuman",
+                variants: [
+                    { name: "", additionalPrice: 0 }
+                ]
+            },
+            {
+                id: 16,
+                name: "KOPI O'",
+                price: 10000,
+                description: "NY. SARINI (KODE: KMMI7)",
+                seller: "KULINER MERDEKA",
+                whatsapp: "082271624019",
+                image: "assets/image/kopi o'.png",
+                category: "minuman",
+                variants: [
+                    { name: "", additionalPrice: 0 }
+                ]
+            },
+            {
+                id: 17,
+                name: "KOPI JAHE",
+                price: 5000,
+                description: "NY. SARINI (KODE: KMMI8)",
+                seller: "KULINER MERDEKA",
+                whatsapp: "082271624019",
+                image: "assets/image/kopi jahe.png",
+                category: "minuman",
+                variants: [
+                    { name: "", additionalPrice: 0 }
+                ]
+            },
+            {
+                id: 18,
+                name: "KOPI SUSU",
+                price: 5000,
+                description: "NY. SARINI (KODE: KMMI9)",
+                seller: "KULINER MERDEKA",
+                whatsapp: "082271624019",
+                image: "assets/image/kopi susu.png",
+                category: "minuman",
+                variants: [
+                    { name: "", additionalPrice: 0 }
+                ]
+            },
+            {
+                id: 19,
+                name: "TEH O'",
+                price: 5000,
+                description: "NY. SARINI (KODE: KMM20)",
+                seller: "KULINER MERDEKA",
+                whatsapp: "082271624019",
+                image: "assets/image/teh o'.png",
+                category: "minuman",
+                variants: [
+                    { name: "", additionalPrice: 0 }
+                ]
+            },
+            {
+                id: 20,
+                name: "SARABBA",
+                price: 5000,
+                description: "- (KODE: KMM21)",
+                seller: "KULINER MERDEKA",
+                whatsapp: "082271624019",
+                image: "assets/image/sarabba.png",
+                category: "minuman",
+                variants: [
+                    { name: "", additionalPrice: 0 }
+                ]
+            },
+            {
+                id: 21,
+                name: "ICE STIKY MILK",
+                price: 5000,
+                description: "NY. SARINI (KODE: KMM22)",
+                seller: "KULINER MERDEKA",
+                whatsapp: "082271624019",
+                image: "assets/image/icestikymilk.png",
+                category: "minuman",
+                variants: [
+                    { name: "AVOCADO", additionalPrice: 0 },
+                    { name: "CAPPUCINO", additionalPrice: 0 },
+                    { name: "COKLAT", additionalPrice: 0 },
+                    { name: "MELON", additionalPrice: 0 }
+                ]
+            },
+            {
+                id: 22,
+                name: "BAKSO SAPI",
+                price: 10000,
+                description: "NY. YUNIATI (KODE: KMMA1)",
+                seller: "KULINER MERDEKA",
+                whatsapp: "082271624019",
+                image: "assets/image/bakso.jpg",
+                category: "makanan",
+                variants: [
+                    { name: "", additionalPrice: 0 }
+                ]
+            },
+            {
+                id: 23,
+                name: "GADO-GADO",
+                price: 12000,
+                description: "NY. KAMRIA (KODE: KMMA2-3)",
+                seller: "KULINER MERDEKA",
+                whatsapp: "082271624019",
+                image: "assets/image/gado-gado.jpeg",
+                category: "makanan",
+                variants: [
+                    { name: "PAKAI TELUR (KODE: KMMA3)", additionalPrice: 3000 },
+                    { name: "TANPA TELUR (KODE: KMMA2)", additionalPrice: 0 }
+                ]
+            },
+            {
+                id: 24,
+                name: "SOTO AYAM",
+                price: 12000,
+                description: "NY. KAMRIA (KODE: KMMA4-5)",
+                seller: "KULINER MERDEKA",
+                whatsapp: "082271624019",
+                image: "assets/image/soto_ayam_bumbu_kuning.jpg",
+                category: "makanan",
+                variants: [
+                    { name: "PAKAI TELUR (KODE: KMMA5)", additionalPrice: 3000 },
+                    { name: "TANPA TELUR (KODE: KMMA4)", additionalPrice: 0 }
+                ]
+            },
+            {
+                id: 25,
+                name: "KARI TAHU LONTONG",
+                price: 10000,
+                description: "TN. ANWAR (KODE: KMMA6)",
+                seller: "KULINER MERDEKA",
+                whatsapp: "082271624019",
+                image: "assets/image/kari tahu lontong.png",
+                category: "makanan",
+                variants: [
+                    { name: "", additionalPrice: 0 }
+                ]
+            },
+            {
+                id: 26,
+                name: "MI GORENG SPESIAL",
+                price: 10000,
+                description: "NY. SARINI (KODE: KMMA7)",
+                seller: "KULINER MERDEKA",
+                whatsapp: "082271624019",
+                image: "assets/image/mi goreng seafood.png",
+                category: "makanan",
+                variants: [
+                    { name: "", additionalPrice: 0 }
+                ]
+            },
+            {
+                id: 27,
+                name: "NASI LALAPAN",
+                price: 15000,
+                description: "NY. KAMRIA (KODE: KMMA8-11)",
+                seller: "KULINER MERDEKA",
+                whatsapp: "082271624019",
+                image: "assets/image/nasi_ayam_lalapan.jpeg",
+                category: "makanan",
+                variants: [
+                    { name: "AYAM (KODE: KMMA8)", additionalPrice: 7000 },
+                    { name: "TAHU (KODE: KMMA9)", additionalPrice: 0 },
+                    { name: "TAHU TEMPE (KODE: KMMA10)", additionalPrice: 0 },
+                    { name: "TEMPE (KODE: KMMA11)", additionalPrice: 0 }
+                ]
+            },
+            {
+                id: 28,
+                name: "NASI GORENG",
+                price: 10000,
+                description: "TN. ANWAR (KODE: KMMA12-13)",
+                seller: "KULINER MERDEKA",
+                whatsapp: "082271624019",
+                image: "assets/image/nasi goreng.png",
+                category: "makanan",
+                variants: [
+                    { name: "SPESIAL (KODE: KMMA13)", additionalPrice: 5000 },
+                    { name: "BIASA (KODE: KMMA12)", additionalPrice: 0 }
+                ]
+            },
+            {
+                id: 29,
+                name: "NASI KUNING",
+                price: 10000,
+                description: "NY. SARINI (KODE: KMMA14-16)",
+                seller: "KULINER MERDEKA",
+                whatsapp: "082271624019",
+                image: "assets/image/nasi kuning.png",
+                category: "makanan",
+                variants: [
+                    { name: "AYAM (KODE: KMMA14)", additionalPrice: 0 },
+                    { name: "IKAN (KODE: KMMA15)", additionalPrice: 0 },
+                    { name: "TELUR (KODE: KMMA16)", additionalPrice: 0 }
+                ]
+            },
+            
+            {
+                id: 30,
+                name: "NASI IKAN BAKAR",
+                price: 15000,
+                description: "TN. ANWAR (KODE: KMMA17-20)",
+                seller: "KULINER MERDEKA",
+                whatsapp: "082271624019",
+                image: "assets/image/nasi ikan bakar.jpg",
+                category: "makanan",
+                variants: [
+                    { name: "IKAN BANDENG (KODE: KMMA17)", additionalPrice: 0 },
+                    { name: "IKAN BUBARA (KODE: KMMA18)", additionalPrice: 10000 },
+                    { name: "IKAN KATAMBA (KODE: KMMA19)", additionalPrice: 10000 },
+                    { name: "IKAN KATOMBO (KODE: KMMA20)", additionalPrice: 0 }
+                ]
+            },
+            {
+                id: 31,
+                name: "IKAN BANDENG PRESTO",
+                price: 5000,
+                description: "TN. ANWAR (KODE: KMMA21-22)",
+                seller: "KULINER MERDEKA",
+                whatsapp: "082271624019",
+                image: "assets/image/ikan bandeng presto.png",
+                category: "makanan",
+                variants: [
+                    { name: "1 EKOR (KODE: KMMA21)", additionalPrice: 5000 },
+                    { name: "1/2 EKOR (KODE: KMMA22)", additionalPrice: 0 }
+                ]
+            }
+        ];
+
+        // Hardcoded address data with shipping costs
+        const addresses = [
+            { name: "Aung", shippingCost: 5000 },
+            { name: "Bajugan", shippingCost: 5000 },
+            { name: "Ginunggung", shippingCost: 3000 },
+            { name: "Kalangkangan", shippingCost: 3000 },
+            { name: "Kinopasan", shippingCost: 5000 },
+            { name: "Lakatan", shippingCost: 5000 },
+            { name: "Lalos", shippingCost: 3000 },
+            { name: "Lantapan", shippingCost: 5000 },
+            { name: "Malangga", shippingCost: 5000 },
+            { name: "Ogomoli", shippingCost: 5000 },
+            { name: "Sabang", shippingCost: 5000 },
+            { name: "Sandana", shippingCost: 5000 },
+            { name: "Tende", shippingCost: 5000 },
+            { name: "Tinigi", shippingCost: 5000 }
+        ];
+
+        // Hardcoded admin WhatsApp number for notifications
+        const adminWhatsApp = "082271624019";
+
+        // Load data from localStorage
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
+        let customers = JSON.parse(localStorage.getItem('customers')) || [];
+        let selectedProductId = null;
+
+        // Format currency
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0
+            }).format(amount);
+        }
+
+        // Convert local number to international format
+        function convertToInternationalNumber(localNumber) {
+            if (localNumber.startsWith('08')) {
+                return '+62' + localNumber.substring(1);
+            }
+            return localNumber;
+        }
+
+        // Load products
+        function loadProducts() {
+            const snackGrid = document.getElementById('snackGrid');
+            const beverageGrid = document.getElementById('beverageGrid');
+            const foodGrid = document.getElementById('foodGrid');
+
+            const renderProducts = (products, grid) => {
+                if (grid) {
+                    grid.innerHTML = products.map(product => `
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="${product.image}" alt="${product.name}">
+                            </div>
+                            <div class="product-info">
+                                <h3>${product.name}</h3>
+                                <p>${product.description}</p>
+                                <div class="product-price">${formatCurrency(product.price)}</div>
+                                ${currentUser ? 
+                                    (product.variants.length === 1 ? 
+                                        `<button class="btn btn-primary" onclick="addToCartDirectly(${product.id})">
+                                            <i class="fas fa-cart-plus"></i> Tambahkan ke Keranjang
+                                        </button>` : 
+                                        `<button class="btn btn-primary" onclick="showProductModal(${product.id})">
+                                            <i class="fas fa-cart-plus"></i> Pilih Varian
+                                        </button>`
+                                    ) : 
+                                    `<button class="btn btn-primary" onclick="showLogin()">
+                                        <i class="fas fa-sign-in-alt"></i> Login untuk Belanja
+                                    </button>`
+                                }
+                            </div>
+                        </div>
+                    `).join('');
+                }
+            };
+
+            const snackProducts = products.filter(p => p.category === 'cemilan');
+            const beverageProducts = products.filter(p => p.category === 'minuman');
+            const foodProducts = products.filter(p => p.category === 'makanan');
+
+            renderProducts(snackProducts, snackGrid);
+            renderProducts(beverageProducts, beverageGrid);
+            renderProducts(foodProducts, foodGrid);
+        }
+
+        // Add product directly to cart (for single-variant products)
+        function addToCartDirectly(productId) {
+            if (!currentUser) {
+                showLogin();
+                return;
+            }
+
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            const selectedVariant = product.variants[0]; // Single variant
+            const cartItem = {
+                ...product,
+                variant: selectedVariant.name,
+                price: product.price + selectedVariant.additionalPrice,
+                quantity: 1
+            };
+
+            const existingItem = cart.find(item => item.id === product.id && item.variant === selectedVariant.name);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push(cartItem);
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartUI();
+
+            const btn = document.querySelector(`button[onclick="addToCartDirectly(${product.id})"]`);
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check"></i> Ditambahkan!';
+            btn.style.background = '#27ae60';
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.style.background = '';
+            }, 1000);
+        }
+
+        // Product Modal functions
+        function showProductModal(productId) {
+            if (!currentUser) {
+                showLogin();
+                return;
+            }
+            selectedProductId = productId;
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            document.getElementById('modalProductName').textContent = product.name;
+            const variantSelect = document.getElementById('variantSelect');
+            variantSelect.innerHTML = product.variants.map(variant => `
+                <option value="${variant.name}" data-price="${variant.additionalPrice}">
+                    ${variant.name} (+${formatCurrency(variant.additionalPrice)})
+                </option>
+            `).join('');
+            document.getElementById('productModal').style.display = 'flex';
+        }
+
+        function closeProductModal() {
+            document.getElementById('productModal').style.display = 'none';
+            selectedProductId = null;
+        }
+
+        function addToCartWithVariant() {
+            if (!selectedProductId) return;
+
+            const product = products.find(p => p.id === selectedProductId);
+            const variantSelect = document.getElementById('variantSelect');
+            const selectedVariantName = variantSelect.value;
+            const selectedVariant = product.variants.find(v => v.name === selectedVariantName);
+            if (!selectedVariant) {
+                alert('Harap pilih varian!');
+                return;
+            }
+
+            const cartItem = {
+                ...product,
+                variant: selectedVariant.name,
+                price: product.price + selectedVariant.additionalPrice,
+                quantity: 1
+            };
+
+            const existingItem = cart.find(item => item.id === product.id && item.variant === selectedVariant.name);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push(cartItem);
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartUI();
+            closeProductModal();
+
+            const btn = document.querySelector(`button[onclick="showProductModal(${product.id})"]`);
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check"></i> Ditambahkan!';
+            btn.style.background = '#27ae60';
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.style.background = '';
+            }, 1000);
+        }
+
+        // Authentication functions
+        function showLogin() {
+            document.getElementById('authContainer').style.display = 'flex';
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('registerForm').style.display = 'none';
+        }
+
+        function showRegister() {
+            document.getElementById('authContainer').style.display = 'flex';
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registerForm').style.display = 'block';
+        }
+
+        function hideAuth() {
+            document.getElementById('authContainer').style.display = 'none';
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            const customer = customers.find(c => c.email === email || c.phone === email);
+            if (customer && customer.password === password) {
+                currentUser = { ...customer };
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                hideAuth();
+                updateNavigation();
+                updateCartVisibility();
+                loadProducts();
+            } else {
+                alert('Email/No.HP atau password salah!');
+                return false;
+            }
+            return false;
+        }
+
+        function handleRegister(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('regName').value;
+            const phone = document.getElementById('regPhone').value;
+            const email = document.getElementById('regEmail').value;
+            const password = document.getElementById('regPassword').value;
+            const confirmPassword = document.getElementById('regConfirmPassword').value;
+
+            if (password !== confirmPassword) {
+                alert('Password dan konfirmasi password tidak sama!');
+                return false;
+            }
+
+            if (customers.find(c => c.email === email || c.phone === phone)) {
+                alert('Email atau nomor HP sudah terdaftar!');
+                return false;
+            }
+
+            const newCustomer = {
+                id: customers.length + 1,
+                name: name,
+                phone: phone,
+                email: email,
+                password: password,
+                joinDate: new Date().toLocaleDateString('id-ID')
+            };
+
+            customers.push(newCustomer);
+            localStorage.setItem('customers', JSON.stringify(customers));
+            alert('Pendaftaran berhasil! Silakan login.');
+            showLogin();
+            return false;
+        }
+
+        function logout() {
+            currentUser = null;
+            cart = [];
+            localStorage.setItem('currentUser', null);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartUI();
+            updateNavigation();
+            updateCartVisibility();
+            loadProducts();
+        }
+
+        function updateNavigation() {
+            const navButtons = document.getElementById('navButtons');
+            const userNav = document.getElementById('userNav');
+            const userName = document.getElementById('userName');
+
+            if (currentUser) {
+                navButtons.style.display = 'none';
+                userNav.style.display = 'flex';
+                userName.textContent = `👋 ${currentUser.name}`;
+            } else {
+                navButtons.style.display = 'flex';
+                userNav.style.display = 'none';
+            }
+        }
+
+        function updateCartVisibility() {
+            const cartIcon = document.getElementById('cartIcon');
+            cartIcon.style.display = currentUser ? 'flex' : 'none';
+        }
+
+        // Cart functions
+        function removeFromCart(productId, variant) {
+            cart = cart.filter(item => !(item.id === productId && item.variant === variant));
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartUI();
+        }
+
+        function updateQuantity(productId, variant, change) {
+            const item = cart.find(item => item.id === productId && item.variant === variant);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(productId, variant);
+                } else {
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    updateCartUI();
+                }
+            }
+        }
+
+        function updateCartUI() {
+            const cartCount = document.getElementById('cartCount');
+            const cartItems = document.getElementById('cartItems');
+            const totalPrice = document.getElementById('totalPrice');
+            const deliveryAddress = document.getElementById('deliveryAddress').value;
+
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const uniqueSellers = [...new Set(cart.map(item => item.seller))];
+            const selectedAddress = addresses.find(addr => addr.name === deliveryAddress);
+            const shippingCost = selectedAddress ? uniqueSellers.length * selectedAddress.shippingCost : 0;
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const totalAmount = subtotal + shippingCost;
+
+            cartCount.textContent = totalItems;
+            totalPrice.textContent = `Total: ${formatCurrency(totalAmount)}`;
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div style="text-align: center; color: #666; padding: 40px 20px;">
+                        <i class="fas fa-shopping-cart" style="font-size: 3rem; margin-bottom: 15px; opacity: 0.5;"></i>
+                        <p>Keranjang kosong</p>
+                        <p style="font-size: 0.9rem; margin-top: 10px;">Mulai berbelanja sekarang!</p>
+                    </div>
+                `;
+            } else {
+                cartItems.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <div style="flex: 1;">
+                            <h4 style="margin-bottom: 5px; font-size: 1rem;">${item.name} (${item.variant})</h4>
+                            <p style="color: #666; margin-bottom: 3px; font-size: 0.9rem;">${formatCurrency(item.price)}</p>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px; margin-top: 10px;">
+                            <button onclick="updateQuantity(${item.id}, '${item.variant}', -1)" 
+                                style="background: #e74c3c; color: white; border: none; border-radius: 50%; 
+                                width: 30px; height: 30px; cursor: pointer; display: flex; align-items: center; 
+                                justify-content: center; font-size: 0.9rem;">-</button>
+                            <span style="font-weight: bold; min-width: 25px; text-align: center;">${item.quantity}</span>
+                            <button onclick="updateQuantity(${item.id}, '${item.variant}', 1)" 
+                                style="background: #27ae60; color: white; border: none; border-radius: 50%; 
+                                width: 30px; height: 30px; cursor: pointer; display: flex; align-items: center; 
+                                justify-content: center; font-size: 0.9rem;">+</button>
+                            <button onclick="removeFromCart(${item.id}, '${item.variant}')" 
+                                style="background: #e74c3c; color: white; border: none; padding: 6px 10px; 
+                                border-radius: 5px; cursor: pointer; font-size: 0.8rem; margin-left: 10px;">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function toggleCart() {
+            if (!currentUser) {
+                showLogin();
+                return;
+            }
+            const cartSidebar = document.getElementById('cartSidebar');
+            const cartOverlay = document.getElementById('cartOverlay');
+            
+            cartSidebar.classList.toggle('open');
+            cartOverlay.classList.toggle('show');
+            
+            if (cartSidebar.classList.contains('open')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+
+        function checkout() {
+            if (!currentUser) {
+                showLogin();
+                return;
+            }
+            if (cart.length === 0) {
+                alert('Keranjang belanja kosong!');
+                return;
+            }
+
+            const deliveryAddress = document.getElementById('deliveryAddress').value;
+            if (!deliveryAddress) {
+                alert('Harap pilih alamat pengiriman!');
+                return;
+            }
+
+            const selectedAddress = addresses.find(addr => addr.name === deliveryAddress);
+            if (!selectedAddress) {
+                alert('Alamat pengiriman tidak valid!');
+                return;
+            }
+
+            const uniqueSellers = [...new Set(cart.map(item => item.seller))];
+            const shippingCost = uniqueSellers.length * selectedAddress.shippingCost;
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const totalAmount = subtotal + shippingCost;
+
+            const orderId = `ORD${Date.now()}`;
+            const orderDate = new Date().toLocaleString('id-ID', { 
+                timeZone: 'Asia/Makassar', 
+                day: '2-digit', 
+                month: '2-digit', 
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+
+            const itemsList = cart.map(item => 
+                `${item.name} (${item.variant}) (${item.quantity}x) - ${formatCurrency(item.price * item.quantity)}`
+            ).join('\n');
+            const adminMessage = `Notifikasi Pesanan Baru\n\nID Pesanan: ${orderId}\nPelanggan: ${currentUser.name}\nAlamat: ${deliveryAddress}\nNo. HP: ${currentUser.phone || 'Belum diisi'}\n\nDetail Pesanan:\n${itemsList}\n\nRincian:\n- Subtotal: ${formatCurrency(subtotal)}\n- Ongkir: ${formatCurrency(shippingCost)}\n- Total: ${formatCurrency(totalAmount)}\n\nTanggal: ${orderDate}\n\n*Harap konfirmasi pesanan ini.*`;
+            const adminWhatsAppUrl = `https://wa.me/${convertToInternationalNumber(adminWhatsApp)}?text=${encodeURIComponent(adminMessage)}`;
+            window.open(adminWhatsAppUrl, '_blank');
+
+            cart = [];
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartUI();
+            toggleCart();
+            alert('Pesanan telah dikirim ke WhatsApp admin untuk konfirmasi.');
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadProducts();
+            updateNavigation();
+            updateCartVisibility();
+            updateCartUI();
+        });
+
+        // Close modals on outside click
+        document.getElementById('authContainer').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('authContainer')) {
+                hideAuth();
+            }
+        });
+
+        document.getElementById('productModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('productModal')) {
+                closeProductModal();
+            }
+        });
+    </script>
+</body>
+</html>
