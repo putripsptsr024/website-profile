@@ -63,7 +63,7 @@ header .header-title h1 {
 /* Hero Section */
 .hero {
   position: relative;
-  background: url('images/background.jpeg') center/cover no-repeat;
+  background: url('images-slide/background.jpeg') center/cover no-repeat;
   height: 650px;
   display: flex;
   justify-content: center;
